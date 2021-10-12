@@ -1,26 +1,30 @@
 import React from 'react'
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { Feather } from '@expo/vector-icons'
-
 import { TouchableOpacity } from 'react-native'
 
-import Home from './pages/Home';
-import Post from './pages/Post';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import { Feather } from '@expo/vector-icons'
+
+import Home from '../pages/Home';
+import Post from '../pages/Post';
+
+import {DrawerNavigation} from "./DrawerNavigation";
+
 
 const Stack = createStackNavigator();
-
 
 function Routes(){
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <DrawerNavigation/>
+            {/* <Stack.Navigator>
+
                 <Stack.Screen 
                     name='home' 
                     component={Home}
                     options={{
                         title: 'Harpia',
-                        
                         headerRight: () => (
                             <TouchableOpacity style={{marginRight: 15}}>
                                 <Feather
@@ -50,7 +54,8 @@ function Routes(){
                         
                     }}
                 />
-            </Stack.Navigator>
+            </Stack.Navigator> */}
+            
         </NavigationContainer>
     )
 }
