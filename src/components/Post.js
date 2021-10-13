@@ -1,16 +1,16 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 export default function Post(props){
     return (
-        <View style={styles.post} onPress={props.onPress}>
+        <View style={styles.post} /*onPress={props.onPress}*/>
             <View style={styles.userPost}>
                 <View style={styles.perfil}></View>
                 <Text style={styles.name}>Nome de usuário</Text>
             </View>
             <Text>Nome do livro</Text>
             <View style={styles.bookImage}>
-                
+            <TouchableOpacity onPress={props.onPress} ><Text>Click-me</Text></TouchableOpacity>    
             </View>
         </View>
     )
