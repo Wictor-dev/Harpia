@@ -3,10 +3,9 @@ import {Image} from "react-native";
 
 import { styles } from "./style";
 
-export function Avatar( props ){
-    
+export function ImagePost( props ){
     return(
-        <Image style={[styles.container,{ width: props.width, height: props.height }]}
+        <Image style={styles.container}
             source={{uri: props.uri}}
          />
     )

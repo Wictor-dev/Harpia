@@ -7,6 +7,8 @@ import {MainStackNavigation} from "./MainStackNavigation";
 import { DrawerNavigationCustom } from "../components/DrawerNavigationCustom";
 import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
 import {Ionicons, MaterialIcons} from "@expo/vector-icons";
+import {Home} from "../pages/Home";
+import {Perfil} from "../pages/Perfil";
 
 
 
@@ -14,14 +16,22 @@ const {Navigator, Screen} = createDrawerNavigator();
 
 export function DrawerNavigation(){
     return(
-        <Navigator initialRouteName="Home" drawerContent={(props) => <DrawerNavigationCustom {...props} />} >
+        <Navigator initialRouteName="Home"  drawerContent={(props) => <DrawerNavigationCustom {...props} />} >
             
+            <Screen
+                name= "Home" 
+                options = {{
+                    drawerIcon: ({focused, color, size}) => (<Ionicons name="home" size={size} color={color}/>)
+                }}
+                component ={Home} 
+            />
+
             <Screen
                 name= "Postar" 
                 options = {{
                     drawerIcon: ({focused, color, size}) => (<Ionicons name="ios-add-circle-outline" size={size} color={color}/>)
                 }}
-                component ={Publish} 
+                component ={Perfil} 
             />
             <Screen
                 name= "Notificações"

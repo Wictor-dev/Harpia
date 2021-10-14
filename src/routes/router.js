@@ -6,8 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { Feather } from '@expo/vector-icons'
 
-import Home from '../pages/Home';
-import Post from '../pages/Post';
+import {Home} from '../pages/Home';
+import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
 
@@ -17,10 +17,17 @@ const Stack = createStackNavigator();
 function Routes(){
     return (
         <NavigationContainer>
-            <DrawerNavigation/>
-            {/* <Stack.Navigator>
+            {/* <DrawerNavigation/> */}
+            <Stack.Navigator>
 
                 <Stack.Screen 
+                    name='home' 
+                    component={DrawerNavigation}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                {/* <Stack.Screen 
                     name='home' 
                     component={Home}
                     options={{
@@ -35,26 +42,18 @@ function Routes(){
                             </TouchableOpacity>
                         )
                     }}
-                />
+                /> */}
 
                 <Stack.Screen
-                    name='post'
-                    component={Post}
+                    name='PostDetail'
+                    component={PostDetail}
                     options={{
-                        title: 'Nome do Post',
-                        headerLeft: () => (
-                            <TouchableOpacity>
-                                <Feather 
-                                    name='arrow-left'
-                                    size={25}
-                                    color='#000'
-                                />
-                            </TouchableOpacity>
-                        )
+                        title: 'Post',
+                        back: true
                         
                     }}
                 />
-            </Stack.Navigator> */}
+            </Stack.Navigator>
             
         </NavigationContainer>
     )

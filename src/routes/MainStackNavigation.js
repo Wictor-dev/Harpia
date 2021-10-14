@@ -6,8 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { Feather } from '@expo/vector-icons'
 
-import Home from '../pages/Home';
-import Post from '../pages/Post';
+import {Home} from '../pages/Home';
+import {Post} from '../pages/Post';
 
 
 
