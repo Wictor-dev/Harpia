@@ -17,7 +17,7 @@ export function DrawerNavigationCustom(props) {
     const navigation =  useNavigation();
 
     function handleScreenPerfil(){
-        navigation.navigate('Perfil')
+        navigation.navigate('perfil')
     }
     return (
         <SafeAreaView style={styles.container}>

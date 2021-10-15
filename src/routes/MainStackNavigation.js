@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons'
 
 import {Home} from '../pages/Home';
 import {Post} from '../pages/Post';
-
+import {Perfil} from '../pages/Perfil';
 
 
 const Stack = createStackNavigator();
@@ -51,6 +51,23 @@ export function MainStackNavigation(){
                             </TouchableOpacity>
                         )
                         
+                    }}
+                />
+
+                <Stack.Screen 
+                    name='perfil'
+                    component={Perfil}
+                    options={{
+                        title: 'perfil',
+                        headerLeft: () => {
+                            <TouchableOpacity>
+                                <Feather 
+                                    name='arrow-left'
+                                    size={25}
+                                    color='#000'
+                                />
+                            </TouchableOpacity>
+                        }
                     }}
                 />
             </Stack.Navigator>

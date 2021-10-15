@@ -1,15 +1,12 @@
-import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import React from 'react';
 
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { Feather } from '@expo/vector-icons'
-
-import {Home} from '../pages/Home';
 import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
+import { Perfil } from '../pages/Perfil'
 
 
 const Stack = createStackNavigator();
@@ -17,7 +14,6 @@ const Stack = createStackNavigator();
 function Routes(){
     return (
         <NavigationContainer>
-            {/* <DrawerNavigation/> */}
             <Stack.Navigator>
 
                 <Stack.Screen 
@@ -27,28 +23,21 @@ function Routes(){
                         headerShown: false
                     }}
                 />
-                {/* <Stack.Screen 
-                    name='home' 
-                    component={Home}
-                    options={{
-                        title: 'Harpia',
-                        headerRight: () => (
-                            <TouchableOpacity style={{marginRight: 15}}>
-                                <Feather
-                                    name="menu"
-                                    size={25}
-                                    color="black"
-                                />
-                            </TouchableOpacity>
-                        )
-                    }}
-                /> */}
 
                 <Stack.Screen
                     name='PostDetail'
                     component={PostDetail}
                     options={{
                         title: 'Post',
+                        back: true
+                        
+                    }}
+                />
+                <Stack.Screen
+                    name='perfil'
+                    component={Perfil}
+                    options={{
+                        title: 'Perfil',
                         back: true
                         
                     }}

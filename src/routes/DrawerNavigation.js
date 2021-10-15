@@ -2,7 +2,6 @@ import React from "react";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import {Publish} from "../pages/Publish";
-import {MainStackNavigation} from "./MainStackNavigation";
 
 import { DrawerNavigationCustom } from "../components/DrawerNavigationCustom";
 import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
@@ -31,7 +30,7 @@ export function DrawerNavigation(){
                 options = {{
                     drawerIcon: ({focused, color, size}) => (<Ionicons name="ios-add-circle-outline" size={size} color={color}/>)
                 }}
-                component ={Perfil} 
+                component ={Publish} 
             />
             <Screen
                 name= "Notificações"
