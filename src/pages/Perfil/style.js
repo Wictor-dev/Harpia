@@ -4,16 +4,16 @@ export const styles = StyleSheet.create({
 
     infoUser:{
         width: '100%',
-        height: 300,
+        height: 320,
         backgroundColor: '#80F4C8',
         flexDirection: 'column',
         alignItems: 'center',
         padding: 10,
     },
     avatar:{
-        width: 120,
-        height:120,
-        borderRadius: 60
+        width: 200,
+        height:200,
+        borderRadius: 100
     },
     ranking:{
         marginTop:10,
@@ -27,7 +27,14 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         marginTop: 10
     },
-    infoUserAndress:{
+
+    reclamationsContainer: {
+        marginTop: 10,
+    },
+    reclamations:{
+        color: "#0E3125",
+    },
+    infoUserOther:{
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 15,
@@ -48,6 +55,15 @@ export const styles = StyleSheet.create({
     },
     titlePosts:{
         fontSize: 20
+    },
+    postsContainer: {
+        width: '90%',
+        margin: '5%',
+    },
+
+    infoUserTransations:{
+        flexDirection: 'row',
+
     }
     
 })

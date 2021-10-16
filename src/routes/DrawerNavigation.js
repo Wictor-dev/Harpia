@@ -7,7 +7,7 @@ import { DrawerNavigationCustom } from "../components/DrawerNavigationCustom";
 import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
 import {Ionicons, MaterialIcons} from "@expo/vector-icons";
 import {Home} from "../pages/Home";
-import {Perfil} from "../pages/Perfil";
+import { Chat } from "../pages/Chat";
 
 
 
@@ -44,7 +44,7 @@ export function DrawerNavigation(){
                 options = {{
                     drawerIcon: ({focused, color, size}) => (<Ionicons name="chatbox" size={size} color={color}/>)
                 }}
-                component ={Publish}
+                component ={Chat}
             />
             <Screen
                 name= "Configurações"
