@@ -15,6 +15,34 @@ export function Publish(){
                 />
             </View>
         )
+
+    const sale = (selectedLanguage === 'venda') ? (
+            <TextField 
+                label={'Valor'}
+                placeholder={'Digite o valor'}
+            />
+    ) : (<></>)
+
+    const trade = (selectedLanguage === 'troca') ? (
+            <TextField 
+                label={'Itens de interesse'}
+                placeholder={'Digite os itens que você quer...'}
+            />
+    ) : (<></>)
+
+    const emprestimo = (selectedLanguage === 'emprestimo') ? (
+        <>
+            <TextField 
+                label={'Valor'}
+                placeholder={'Digite o valor'}
+            />
+            <TextField 
+                label={'Data de devolução'}
+                placeholder={'Digite a data de devolução...'}
+            />
+        </>
+    ) : (<></>)
+
     return (
         <View style={styles.publishContainer}>
             <TextField 
@@ -25,14 +53,9 @@ export function Publish(){
                 label={'Descrição'}
                 placeholder={'Digite a descrição do livro...'}
             />
-            {/* <TextField 
-                label={'Categoria'}
-                placeholder={'Selecione a categoria...'}
-            /> */}
             <Text style={styles.categoryTitle}>Categoria</Text>
             <View style={styles.category}>
-                <Picker
-                    
+                <Picker  
                     itemStyle={{backgroundColor:'#000'}}
                     selectedValue={selectedLanguage}
                     onValueChange={(itemValue, itemIndex) =>
@@ -44,8 +67,9 @@ export function Publish(){
                     <Picker.Item label="Emprestar" value="emprestimo" />
                 </Picker>
             </View>
-
-            
+            {sale}
+            {trade}
+            {emprestimo}
             <View style={styles.image}>
                 <Text>Escolher Imagem</Text>
             </View>

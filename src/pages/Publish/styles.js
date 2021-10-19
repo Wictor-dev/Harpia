@@ -52,6 +52,10 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    empty:{
+        margin: 0,
+        padding: 0,
     }
 
 })

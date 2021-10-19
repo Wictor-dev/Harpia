@@ -8,6 +8,7 @@ import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
 import {Ionicons, MaterialIcons} from "@expo/vector-icons";
 import {Home} from "../pages/Home";
 import { Chat } from "../pages/Chat";
+import { Books } from "../pages/Books";
 
 
 
@@ -32,6 +33,14 @@ export function DrawerNavigation(){
                 }}
                 component ={Publish} 
             />
+
+            <Screen 
+                name="Livros"
+                options = {{
+                    drawerIcon: ({focused, color, size}) => (<Ionicons name="book-outline" size={size} color={color} />)
+                }}
+                component={Books}
+            />
             <Screen
                 name= "Notificações"
                 options = {{
@@ -47,16 +56,16 @@ export function DrawerNavigation(){
                 component ={Chat}
             />
             <Screen
-                name= "Configurações"
+                name= "Salvos"
                 options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="settings" size={size} color={color}/>)
+                    drawerIcon: ({focused, color, size}) => (<MaterialIcons name="save-alt" size={size} color={color}/>)
                 }}
                 component ={Publish}
             />
             <Screen
-                name= "Salvos"
+                name= "Configurações"
                 options = {{
-                    drawerIcon: ({focused, color, size}) => (<MaterialIcons name="save-alt" size={size} color={color}/>)
+                    drawerIcon: ({focused, color, size}) => (<Ionicons name="settings" size={size} color={color}/>)
                 }}
                 component ={Publish}
             />
