@@ -7,7 +7,9 @@ import { DrawerNavigationCustom } from "../components/DrawerNavigationCustom";
 import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
 import {Ionicons, MaterialIcons} from "@expo/vector-icons";
 import {Home} from "../pages/Home";
-import {Perfil} from "../pages/Perfil";
+
+
+import {Post} from "../pages/Post";
 
 
 
@@ -25,12 +27,13 @@ export function DrawerNavigation(){
                 component ={Home} 
             />
 
-            <Screen
-                name= "Postar" 
+            {/* <Screen
+                name= "Post" 
                 options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="ios-add-circle-outline" size={size} color={color}/>)
+                    drawerIcon: ({focused, color, size}) => (<Ionicons name="ios-add-circle-outline" size={size} color={color}/>),
+                    //headerShown: false
                 }}
-                component ={Publish} 
+                component ={Post} 
             />
             <Screen
                 name= "Notificações"
@@ -59,7 +62,7 @@ export function DrawerNavigation(){
                     drawerIcon: ({focused, color, size}) => (<MaterialIcons name="save-alt" size={size} color={color}/>)
                 }}
                 component ={Publish}
-            />
+            /> */}
         </Navigator>
     )
     

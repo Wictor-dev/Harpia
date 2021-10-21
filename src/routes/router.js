@@ -6,7 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
-import { Perfil } from '../pages/Perfil'
+import { Perfil } from '../pages/Perfil';
+import { Post } from '../pages/Post';
 
 
 const Stack = createStackNavigator();
@@ -42,6 +43,16 @@ function Routes(){
                         
                     }}
                 />
+
+                <Stack.Screen
+                    name='post'
+                    component={Post}
+                    options={{
+                        title: 'Post',
+                        back: true
+                        
+                    }}
+            />
             </Stack.Navigator>
             
         </NavigationContainer>

@@ -41,15 +41,15 @@ export function MainStackNavigation(){
                     component={Post}
                     options={{
                         title: 'Nome do Post',
-                        headerLeft: () => (
-                            <TouchableOpacity>
-                                <Feather 
-                                    name='arrow-left'
-                                    size={25}
-                                    color='#000'
-                                />
-                            </TouchableOpacity>
-                        )
+                        // headerLeft: () => (
+                        //     <TouchableOpacity>
+                        //         <Feather 
+                        //             name='arrow-left'
+                        //             size={25}
+                        //             color='#000'
+                        //         />
+                        //     </TouchableOpacity>
+                        // )
                         
                     }}
                 />

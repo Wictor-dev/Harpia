@@ -8,7 +8,7 @@ export function Post(){
         showsVerticalScrollIndicator={false}
         style={{backgroundColor: '#00FA9A'}}
         >
-            <Text>Aloo</Text>
+            <Text>Alo</Text>
         </ScrollView>
     )
     

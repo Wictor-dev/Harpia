@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
     container:{
         // width: 55,
         // height: 55,
-        borderRadius: 25
+        //borderRadius: 25
     }
 });
