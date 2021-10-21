@@ -2,9 +2,8 @@ import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
 
 import { styles } from './style';
-import { Avatar } from '../../components/Avatar';
 import { Ranking } from '../../components/Ranking';
-import { FlatList } from 'react-native-gesture-handler';
+import Post from '../../components/Post';
 
 
 export function Perfil(){
@@ -18,9 +17,21 @@ export function Perfil(){
                     <Text style={styles.textRaking}>(27)</Text>
                 </View>   
                 <Text style={styles.userName} >Ezequiel Costa</Text>
-            </View>
 
-            <View style={styles.infoUserAndress}>
+                <View style={styles.reclamationsContainer}>
+                    <Text style={styles.reclamations}>Sem reclamações</Text>
+                </View>
+            </View>
+            <View style={styles.infoUserOther}>
+                <Text>Empréstimos</Text>
+                <Text>Doações</Text>
+                <Text>Trocas</Text>
+                <Text>Vendas</Text>
+            </View>
+            <View style={styles.dividerOther}>
+                <View style={styles.divider} />
+            </View>
+            <View style={styles.infoUserOther}>
                 <Text>Moradia</Text>
                 <Text>Mocambinho - Teresina-PI</Text>
             </View>
@@ -28,7 +39,7 @@ export function Perfil(){
                 <View style={styles.divider} />
             </View>
             
-            <View style={styles.infoUserAndress}>
+            <View style={styles.infoUserOther}>
                 <Text>Genero Literário</Text>
                 <Text>Ação / Terror</Text>
             </View>
@@ -36,14 +47,14 @@ export function Perfil(){
             <View style={styles.dividerContainer}>
                 <View style={styles.divider} />
             </View>
-
             <View style={styles.posts}>
                 <View style={styles.titlePostsContainer}>
                     <Text style={styles.titlePosts}>Posts</Text>
                 </View>
-                {/* <FlatList>
-
-                </FlatList> */}
+                <View style={styles.postsContainer}>
+                    <Post />
+                    <Post />
+                </View>
             </View>
         </ScrollView>
     )
