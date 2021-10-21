@@ -25,10 +25,10 @@ export function DrawerNavigationCustom(props) {
             <View style={styles.profile}>
                 <Avatar width={80} height={80} uri="https://www.github.com/EzequielCosta.png"/>
                 <Ranking style={styles.ranking} />
-                <TouchableOpacity onPress={handleScreenPerfil} ><Text>Ver perfil</Text></TouchableOpacity>
+                <TouchableOpacity onPress={handleScreenPerfil} style={styles.buttonVerPerfil} ><Text >Ver perfil</Text></TouchableOpacity>
             </View>
             
-            <DrawerContentScrollView {...props}>
+            <DrawerContentScrollView {...props} >
 
                 <DrawerItem
                     label="Home"
@@ -39,11 +39,19 @@ export function DrawerNavigationCustom(props) {
                 />
 
                 <DrawerItem
-                    label="Post"
+                    label="Publicar"
                     icon = { ({color, size}) => (
                         <Ionicons name="ios-add-circle-outline" size={size} color={color}/>
                     )}
-                    onPress={ () => navigation.navigate('post') }
+                    onPress={ () => navigation.navigate('publish') }
+                />
+
+                <DrawerItem
+                    label="Livros"
+                    icon = { ({color, size}) => (
+                        <Ionicons name="book-outline" size={size} color={color}/>
+                    )}
+                    onPress={ () => navigation.navigate('book') }
                 />
 
                 <DrawerItem
@@ -61,21 +69,21 @@ export function DrawerNavigationCustom(props) {
                     )}
                     onPress={ () => navigation.navigate('chat') }
                 />
-
-                <DrawerItem
-                    label="Configurações"
-                    icon = { ({color, size}) => (
-                        <Ionicons name="settings" size={size} color={color}/>
-                    )}
-                    onPress={ () => navigation.navigate('settings') }
-                />
                 
                 <DrawerItem
                     label="Salvos"
                     icon = { ({color, size}) => (
                         <MaterialIcons name="save-alt" size={size} color={color}/>
                     )}
-                    onPress={ () => navigation.navigate('favorites') }
+                    //onPress={ () => navigation.navigate('favorites') }
+                />
+
+                <DrawerItem
+                    label="Configurações"
+                    icon = { ({color, size}) => (
+                        <Ionicons name="settings" size={size} color={color}/>
+                    )}
+                    //onPress={ () => navigation.navigate('settings') }
                 />
 
                 {/* <DrawerItemList {...props} />     */}

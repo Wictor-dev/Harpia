@@ -7,7 +7,10 @@ import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
 import { Perfil } from '../pages/Perfil';
-import { Post } from '../pages/Post';
+import { Chat } from '../pages/Chat';
+import { Books } from '../pages/Books';
+import { Publish } from '../pages/Publish';
+import { Notifications } from '../pages/Notifications';
 
 
 const Stack = createStackNavigator();
@@ -29,7 +32,7 @@ function Routes(){
                     name='PostDetail'
                     component={PostDetail}
                     options={{
-                        title: 'Post',
+                        title: 'Detalhes do Post',
                         back: true
                         
                     }}
@@ -45,14 +48,45 @@ function Routes(){
                 />
 
                 <Stack.Screen
-                    name='post'
-                    component={Post}
+                    name='publish'
+                    component={Publish}
                     options={{
-                        title: 'Post',
+                        title: 'Publicar',
                         back: true
                         
                     }}
-            />
+                />
+
+                <Stack.Screen
+                    name='book'
+                    component={Books}
+                    options={{
+                        title: 'Book',
+                        back: true
+                        
+                    }}
+                />
+
+                <Stack.Screen
+                    name='chat'
+                    component={Chat}
+                    options={{
+                        title: 'Chat',
+                        back: true
+                        
+                    }}
+                />
+
+                <Stack.Screen
+                    name='notifications'
+                    component={Notifications}
+                    options={{
+                        title: 'Notificações',
+                        back: true
+                        
+                    }}
+                />
+
             </Stack.Navigator>
             
         </NavigationContainer>

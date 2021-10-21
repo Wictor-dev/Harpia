@@ -2,13 +2,17 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     publishContainer: {
-        backgroundColor: '#240046',
-        width: '100%',
-        height: '100%'
+        backgroundColor: '#2288DB',
+        flex: 1,
+        paddingBottom: 100
+        // width: '100%',
+        // height: '100%'
     },
     categoryTitle:{
         alignSelf: 'center',
-        fontSize: 20
+        fontSize: 20,
+        marginBottom: 10,
+        color: '#fff'
     },
     category:{
         width: '80%',
@@ -35,6 +39,9 @@ export const styles = StyleSheet.create({
     empty:{
         margin: 0,
         padding: 0,
+    },
+    titleField:{
+        color: '#fff'
     }
 
 })
