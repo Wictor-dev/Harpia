@@ -1,20 +1,13 @@
 import React, {useState} from "react";
-import { View, TextInput, Text } from "react-native";
-import { styles } from "./styles";
+import { View, Text } from "react-native";
 import { Picker } from '@react-native-picker/picker';
+
+import { styles } from "./styles";
+import { TextField } from '../../components/TextField';
 
 export function Publish(){
     const [selectedLanguage, setSelectedLanguage] = useState();
 
-    const TextField = ({label, ...inputProps}) => (
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>{label}</Text>
-                <TextInput 
-                    style={(label == 'Descrição') ? styles.textArea :styles.input}
-                    {...inputProps}
-                />
-            </View>
-        )
 
     const sale = (selectedLanguage === 'venda') ? (
             <TextField 

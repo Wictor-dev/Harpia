@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     infoUser:{
         width: '100%',
         height: 320,
-        backgroundColor: '#80F4C8',
+        backgroundColor: '#240046',
         flexDirection: 'column',
         alignItems: 'center',
         padding: 10,
@@ -21,11 +21,13 @@ export const styles = StyleSheet.create({
     },
     textRaking:{
         textAlignVertical: 'center',
-        marginLeft: 5
+        marginLeft: 5,
+        color: '#fff'
     },
     userName:{
         fontSize: 15,
-        marginTop: 10
+        marginTop: 10,
+        color: '#fff'
     },
 
     reclamationsContainer: {
