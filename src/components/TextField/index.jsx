@@ -8,6 +8,7 @@ export function TextField({label, ...inputProps}){
         <View style={styles.formContainer}>
                 <Text style={styles.label}>{label}</Text>
                 <TextInput 
+                    
                     style={(label == 'Descrição' || label ==  'Sinopse') ? styles.textArea :styles.input}
                     {...inputProps}
                 />
