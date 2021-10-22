@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 import { styles } from "./styles";
 import { TextField } from '../../components/TextField';
+import { ScrollView } from "react-native-gesture-handler";
 
 import {api} from '../../services/api.js'
 export function Publish(){
@@ -52,9 +53,9 @@ export function Publish(){
             />
         </>
     ) : (<></>)
-
     return (
-        <View style={styles.publishContainer}>
+        <ScrollView  style={styles.publishContainer} contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
+
             {/* <TextField 
                 label={'Título'}
                 placeholder={'Digite o título do livro...'}
@@ -106,7 +107,7 @@ export function Publish(){
                 onPress={fetchApi}
                 title={"Continuar"}
             />
-        </View>
+        </ScrollView>
     )
 
     

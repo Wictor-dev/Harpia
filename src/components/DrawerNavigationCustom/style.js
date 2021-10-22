@@ -8,10 +8,16 @@ export const styles = StyleSheet.create({
     },
     profile:{
         alignItems: "center",
-        padding: 10
+        padding: 10,
+        backgroundColor: '#4396DF'
     },
     ranking:{
         marginTop: 10,
         marginBottom:10
+    },
+    buttonVerPerfil:{
+        borderRadius: 10,
+        backgroundColor: "#069563",
+        padding: 5,
     }
 });

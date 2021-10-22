@@ -20,7 +20,7 @@ export function Home(){
     return (
         <ScrollView 
             showsVerticalScrollIndicator={false}
-            style={{backgroundColor: '#240046'}}
+            style={{backgroundColor: '#154c79'}}
         >
             <View style={styles.filterContainer}>
                 <Filter />

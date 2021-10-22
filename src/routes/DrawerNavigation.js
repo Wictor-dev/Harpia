@@ -1,14 +1,9 @@
 import React from "react";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import {Publish} from "../pages/Publish";
-
 import { DrawerNavigationCustom } from "../components/DrawerNavigationCustom";
-import { CustomDrawerContent } from "../components/DrawerNavigationCustom";
-import {Ionicons, MaterialIcons} from "@expo/vector-icons";
+import {Ionicons,} from "@expo/vector-icons";
 import {Home} from "../pages/Home";
-import { Chat } from "../pages/Chat";
-import { Books } from "../pages/Books";
 
 
 
@@ -21,54 +16,11 @@ export function DrawerNavigation(){
             <Screen
                 name= "Home" 
                 options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="home" size={size} color={color}/>)
+                    drawerIcon: ({focused, color, size}) => (<Ionicons name="home" size={size} color={color}/>),
                 }}
                 component ={Home} 
             />
 
-            <Screen
-                name= "Postar" 
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="ios-add-circle-outline" size={size} color={color}/>)
-                }}
-                component ={Publish} 
-            />
-
-            <Screen 
-                name="Livros"
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="book-outline" size={size} color={color} />)
-                }}
-                component={Books}
-            />
-            <Screen
-                name= "Notificações"
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="notifications-sharp" size={size} color={color}/>)
-                }}
-                component ={Publish}
-            />
-            <Screen
-                name= "Chat"
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="chatbox" size={size} color={color}/>)
-                }}
-                component ={Chat}
-            />
-            <Screen
-                name= "Salvos"
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<MaterialIcons name="save-alt" size={size} color={color}/>)
-                }}
-                component ={Publish}
-            />
-            <Screen
-                name= "Configurações"
-                options = {{
-                    drawerIcon: ({focused, color, size}) => (<Ionicons name="settings" size={size} color={color}/>)
-                }}
-                component ={Publish}
-            />
         </Navigator>
     )
     
