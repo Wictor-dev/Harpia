@@ -18,7 +18,7 @@ export default function Post(props){
                 </View>
                 <FontAwesome5 name='money-bill' size={30} color="#000"  />
             </View>
-            <Text style={styles.bookName}>Diário de uma banana: Bons Tempos</Text>
+            <Text style={styles.bookName}>{props.titulo}</Text>
             <TouchableOpacity style= {styles.bookImageContainer} onPress={props.handlePostDetail}  >
                 {/* <ImagePost uri = "https://cf.shopee.com.br/file/c072b86d0c3184e4c9735cc13ce796fe" /> */}
                 <Image style= {styles.imagePost} source={{ uri: 'https://cf.shopee.com.br/file/c072b86d0c3184e4c9735cc13ce796fe'}} />

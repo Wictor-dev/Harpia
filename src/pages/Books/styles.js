@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     booksContainer:{
-        backgroundColor: '#240046',
+        backgroundColor: '#154c79',
         height: '100%'
     },
     image:{

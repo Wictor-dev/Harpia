@@ -27,39 +27,44 @@ export function Publish(){
             console.log(error)
         } 
     }
-    const sale = (selectedLanguage === 'venda') ? (
-            <TextField 
-                label={'Valor'}
-                placeholder={'Digite o valor'}
-            />
-    ) : (<></>)
 
-    const trade = (selectedLanguage === 'troca') ? (
-            <TextField 
+    const itemPicker = () => {
+        if (selectedLanguage == 'venda'){
+            return (
+                <TextField 
+                    label={'Valor'}
+                    placeholder={'Digite o valor'}
+                />
+            )
+        }
+        else if (selectedLanguage === 'troca') {
+            return (
+                <TextField 
                 label={'Itens de interesse'}
                 placeholder={'Digite os itens que você quer...'}
-            />
-    ) : (<></>)
+                />
+            )
+        }
+        else if (selectedLanguage==='emprestimo'){
+            return (
+                <>
+                    <TextField 
+                        label={'Valor'}
+                        placeholder={'Digite o valor'}
+                    />
+                    <TextField 
+                        label={'Data de devolução'}
+                        placeholder={'Digite a data de devolução...'}
+                    />
+                </>
+            )
+        }
+    }
 
-    const emprestimo = (selectedLanguage === 'emprestimo') ? (
-        <>
-            <TextField 
-                label={'Valor'}
-                placeholder={'Digite o valor'}
-            />
-            <TextField 
-                label={'Data de devolução'}
-                placeholder={'Digite a data de devolução...'}
-            />
-        </>
-    ) : (<></>)
+    const extraFields = itemPicker()
     return (
         <ScrollView  style={styles.publishContainer} contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
 
-            {/* <TextField 
-                label={'Título'}
-                placeholder={'Digite o título do livro...'}
-            /> */}
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Título</Text>
                 <TextInput 
@@ -78,10 +83,7 @@ export function Publish(){
                     defaultValue={description}
                     />
             </View>
-            {/* <TextField 
-                label={'Descrição'}
-                placeholder={'Digite a descrição do livro...'}
-            /> */}
+
             <Text style={styles.categoryTitle}>Categoria</Text>
             <View style={styles.category}>
                 <Picker  
@@ -96,9 +98,7 @@ export function Publish(){
                     <Picker.Item label="Emprestar" value="emprestimo" />
                 </Picker>
             </View>
-            {sale}
-            {trade}
-            {emprestimo}
+            {extraFields}
             <View style={styles.image}>
                 <Text>Escolher Imagem</Text>
             </View>
