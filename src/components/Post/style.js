@@ -41,11 +41,19 @@ export const styles = StyleSheet.create({
         fontSize: 15
     },
     name:{
-        marginLeft: 3
+        marginLeft: 3,
+        marginTop: 15
     },
     imagePost:{
         width: '100%',
-        height: '100%',
+        height: '100%', 
+    },
+    bottomPost: {
+        width: '90%',
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
         
     }
+
 })

@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react'
-import {Text, View, TouchableOpacity} from 'react-native'
+import {Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
@@ -18,6 +18,7 @@ export function Home(){
         navigation.navigate('PostDetail')
     }
 
+    // Faz o consumo da API assim que a página é carregada
     useEffect(()=>{
         const fetchApi = async ()=>{
             const {data} = await api.get('postagens')
@@ -25,15 +26,20 @@ export function Home(){
         }
         fetchApi();
     }, [])
-    
-    const postsRender = posts.map(post => {
-        return(
-            <View key={post.id}>
-                <Post titulo={post.titulo}  handlePostDetail={handlePostDetail} />
-
-            </View>
-        )
-    })
+    console.log(posts)
+    // const PostsRender = () => (
+    //     <FlatList 
+    //                 style={styles.postsContainer}
+    //                 data={posts}
+    //                 keyExtractor={(post)=>{post._id}}
+    //                 renderItem={({post})=>{
+                        
+    //                     return (
+    //                     <Post titulo={post?.titulo} handlePostDetail={handlePostDetail} />
+    //                     )}}
+    //             />
+    // )
+    // console.log(posts)
     return (
         <ScrollView 
             showsVerticalScrollIndicator={false}
@@ -42,9 +48,16 @@ export function Home(){
             <View style={styles.filterContainer}>
                 <Filter />
             </View>
-            <View style={styles.postsContainer}>
-                {postsRender}
-            </View>
+            <FlatList 
+                    style={styles.postsContainer}
+                    data={posts}
+                    keyExtractor={(post)=>{post._id}}
+                    renderItem={({item})=>{
+                        
+                        return (
+                        <Post titulo={item?.titulo} handlePostDetail={handlePostDetail} />
+                        )}}
+                />
         </ScrollView>
     )
 }
