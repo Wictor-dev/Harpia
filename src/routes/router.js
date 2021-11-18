@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import { Text } from 'react-native';
 import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
@@ -11,6 +12,7 @@ import { Chat } from '../pages/Chat';
 import { Books } from '../pages/Books';
 import { Publish } from '../pages/Publish';
 import { Notifications } from '../pages/Notifications';
+import { OpenedChat } from '../pages/OpenedChat';
 
 
 const Stack = createStackNavigator();
@@ -18,13 +20,18 @@ const Stack = createStackNavigator();
 function Routes(){
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerTitleAlign:'center'
+                }}
+            >
 
                 <Stack.Screen 
                     name='home' 
                     component={DrawerNavigation}
                     options={{
-                        headerShown: false
+                        headerShown: false,
+                        
                     }}
                 />
 
@@ -33,7 +40,9 @@ function Routes(){
                     component={PostDetail}
                     options={{
                         title: 'Detalhes do Post',
-                        back: true
+                        back: true,
+                        headerStyle: {backgroundColor: 'red'},
+                        headerRight: () => (<Text>Empréstimo</Text>)
                         
                     }}
                 />
@@ -58,22 +67,20 @@ function Routes(){
                 />
 
                 <Stack.Screen
-                    name='book'
-                    component={Books}
-                    options={{
-                        title: 'Book',
-                        back: true
-                        
-                    }}
-                />
-
-                <Stack.Screen
                     name='chat'
                     component={Chat}
                     options={{
                         title: 'Chat',
                         back: true
                         
+                    }}
+                />
+
+                <Stack.Screen 
+                    name='OpenedChat'
+                    component={OpenedChat}
+                    options={{
+                        back: true
                     }}
                 />
 

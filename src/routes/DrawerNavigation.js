@@ -14,9 +14,10 @@ export function DrawerNavigation(){
         <Navigator initialRouteName="Home"  drawerContent={(props) => <DrawerNavigationCustom {...props} />} >
             
             <Screen
-                name= "Home" 
+                name= "Posts" 
                 options = {{
                     drawerIcon: ({focused, color, size}) => (<Ionicons name="home" size={size} color={color}/>),
+                    headerTitleAlign:'center'
                 }}
                 component ={Home} 
             />

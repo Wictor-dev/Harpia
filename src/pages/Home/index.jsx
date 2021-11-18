@@ -26,20 +26,7 @@ export function Home(){
         }
         fetchApi();
     }, [])
-    console.log(posts)
-    // const PostsRender = () => (
-    //     <FlatList 
-    //                 style={styles.postsContainer}
-    //                 data={posts}
-    //                 keyExtractor={(post)=>{post._id}}
-    //                 renderItem={({post})=>{
-                        
-    //                     return (
-    //                     <Post titulo={post?.titulo} handlePostDetail={handlePostDetail} />
-    //                     )}}
-    //             />
-    // )
-    // console.log(posts)
+   
     return (
         <ScrollView 
             showsVerticalScrollIndicator={false}

@@ -1,11 +1,13 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
-import { styles } from "./style";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 
-export function Message(){
+import { styles } from "./style";
+import { Avatar } from '../../components/Avatar'
+export function Message({handleMessage}){
     return(
-        <View style={styles.messageContainer}>
-            <Image style={styles.avatar} source={{uri: "https://www.github.com/EzequielCosta.png" }} />
+        <TouchableOpacity onPress={handleMessage} style={styles.messageContainer}>
+            {/* <Image style={styles.avatar} source={{uri: "https://www.github.com/EzequielCosta.png" }} /> */}
+            <Avatar uri="https://www.github.com/Wictor-dev.png" width={55} height={55} />
             <View style={styles.infoMessage}>
                 <Text>Bessie Cooper</Text>
             </View>
@@ -15,6 +17,6 @@ export function Message(){
             <View style={styles.infoMessage}>
                 <Text>Empréstimo</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }

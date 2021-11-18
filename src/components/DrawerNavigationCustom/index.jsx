@@ -47,14 +47,6 @@ export function DrawerNavigationCustom(props) {
                 />
 
                 <DrawerItem
-                    label="Livros"
-                    icon = { ({color, size}) => (
-                        <Ionicons name="book-outline" size={size} color={color}/>
-                    )}
-                    onPress={ () => navigation.navigate('book') }
-                />
-
-                <DrawerItem
                     label="Notificações"
                     icon = { ({color, size}) => (
                         <Ionicons name="notifications-sharp" size={size} color={color}/>
