@@ -14,7 +14,7 @@ export default function Post(props){
             <View style={styles.userPost}>
                 <View style={styles.user}>
                     <View style={styles.perfil}><Avatar  uri="https://www.github.com/Wictor-dev.png" width={55} height={55} /></View>
-                    <Text style={styles.name}>Ezequiel Costa</Text>
+                    <Text style={styles.name}>Wictor Gabriel</Text>
                 </View>
                 <FontAwesome5 name='money-bill' size={30} color="#000"  />
             </View>

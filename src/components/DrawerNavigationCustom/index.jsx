@@ -11,19 +11,23 @@ import {Ranking} from "../Ranking";
 import {Ionicons, MaterialIcons, Feather} from "@expo/vector-icons";
 
 import { styles } from "./style";
+import {useAuth} from "../../contexts/auth";
 
 
 export function DrawerNavigationCustom(props) {
 
+    const { signOut } = useAuth();
     const navigation =  useNavigation();
-
+    function handleSignOut(){
+        signOut();
+    }
     function handleScreenPerfil(){
         navigation.navigate('perfil')
     }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.profile}>
-                <Avatar width={80} height={80} uri="https://www.github.com/EzequielCosta.png"/>
+                <Avatar width={80} height={80} uri="https://www.github.com/Wictor-dev.png"/>
                 <Ranking style={styles.ranking} />
                 <TouchableOpacity onPress={handleScreenPerfil} style={styles.buttonVerPerfil} ><Text >Ver perfil</Text></TouchableOpacity>
             </View>
@@ -85,7 +89,7 @@ export function DrawerNavigationCustom(props) {
                 icon = { ({color, size}) => (
                     <Feather name="log-out" size={size} color={color} />
                 )}
-                onPress={ () => navigation.navigate('logout') }
+                onPress={handleSignOut}
             />
 
             

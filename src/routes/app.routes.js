@@ -9,7 +9,6 @@ import {PostDetail} from '../pages/PostDetail';
 import {DrawerNavigation} from "./DrawerNavigation";
 import { Perfil } from '../pages/Perfil';
 import { Chat } from '../pages/Chat';
-import { Books } from '../pages/Books';
 import { Publish } from '../pages/Publish';
 import { Notifications } from '../pages/Notifications';
 import { OpenedChat } from '../pages/OpenedChat';
@@ -17,9 +16,9 @@ import { OpenedChat } from '../pages/OpenedChat';
 
 const Stack = createStackNavigator();
 
-function Routes(){
+function AppRoutes(){
     return (
-        <NavigationContainer>
+        
             <Stack.Navigator
                 screenOptions={{
                     headerTitleAlign:'center'
@@ -41,7 +40,7 @@ function Routes(){
                     options={{
                         title: 'Detalhes do Post',
                         back: true,
-                        headerStyle: {backgroundColor: 'red'},
+                        // headerStyle: {backgroundColor: 'red'},
                         headerRight: () => (<Text>Empréstimo</Text>)
                         
                     }}
@@ -95,9 +94,8 @@ function Routes(){
                 />
 
             </Stack.Navigator>
-            
-        </NavigationContainer>
+        
     )
 }
 
-export default Routes;
+export default AppRoutes;

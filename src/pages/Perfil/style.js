@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     infoUser:{
         width: '100%',
         height: 320,
-        backgroundColor: '#84BBDA',
+        backgroundColor: '#00B4D8',
         flexDirection: 'column',
         alignItems: 'center',
         padding: 10,

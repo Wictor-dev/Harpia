@@ -4,19 +4,21 @@ import {Text, View, ScrollView, Image} from 'react-native';
 import { styles } from './style';
 import { Ranking } from '../../components/Ranking';
 import Post from '../../components/Post';
+import { useAuth } from '../../contexts/auth';
 
 
 export function Perfil(){
+    const {user} = useAuth();
     return (
         <ScrollView  showsVerticalScrollIndicator={false} >
             <View style={styles.infoUser}>
-                <Image style={styles.avatar} source={{uri: "https://www.github.com/EzequielCosta.png" }} />
+                <Image style={styles.avatar} source={{uri: "https://www.github.com/Wictor-dev.png" }} />
                 {/* <Avatar uri="https://www.github.com/EzequielCosta.png" width={100} height={100} /> */}
                 <View style={styles.ranking}>
                     <Ranking/>
                     <Text style={styles.textRaking}>(27)</Text>
                 </View>   
-                <Text style={styles.userName} >Ezequiel Costa</Text>
+                <Text style={styles.userName}> {user.nome} </Text>
 
                 <View style={styles.reclamationsContainer}>
                     <Text style={styles.reclamations}>Sem reclamações</Text>
@@ -33,7 +35,7 @@ export function Perfil(){
             </View>
             <View style={styles.infoUserOther}>
                 <Text>Moradia</Text>
-                <Text>Mocambinho - Teresina-PI</Text>
+                <Text>{user.bairro} - {user.cidade}/PI</Text>
             </View>
             <View style={styles.dividerContainer}>
                 <View style={styles.divider} />

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     buttonVerPerfil:{
         borderRadius: 10,
-        backgroundColor: "#069563",
+        backgroundColor: "#90E0EF",
         padding: 5,
     }
 });
