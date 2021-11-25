@@ -30,37 +30,31 @@ export const styles = StyleSheet.create({
         width: '70%',
         alignSelf: 'center',
     },
-    buttonLogin:{
-        color: '#0096C7',
-        backgroundColor: '#ADE8F4',
-        height: 50,
-        borderWidth: 1,
-        borderColor: '#ADE8F4',
-        borderRadius: 10,
-    },
-    textLogin:{
-        textAlign: 'center',
-        fontSize: 20,
-    },
     alternativeButtonsSubmit: {
         marginTop: 50,
     },
     buttonsAlternative:{
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
-    alternativeSubtitle:{
-        color: '#fff',
-    },
-    alternativeLogin:{
-        width: '40%',
+    buttonLogin:{
         backgroundColor: '#ADE8F4',
         height: 50,
         borderRadius: 10,
         justifyContent: 'center'
     },
-    alternativeText:{
+    textLogin:{
         color: '#0096C7',
         textAlign: 'center',
-    }
+        fontSize: 20
+    },
+    alternativeSubtitle:{
+        color: '#fff',
+    },
+    alternativeLogin:{
+        width: '30%',
+        backgroundColor: '#ADE8F4',
+        borderRadius: 10,
+        alignItems: 'center'
+    },
 })

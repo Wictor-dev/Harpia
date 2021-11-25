@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {SignIn} from '../pages/SignIn';
+import {SignUp} from '../pages/SignUp';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { InitialScreen } from '../pages/InitialScreen';
@@ -15,12 +17,21 @@ export const AuthRoutes = () => (
                 headerShown: false
             }}
         />
+
         <AuthStack.Screen 
             name="SignIn" 
             component={SignIn} 
             options={{
                headerTransparent: true,
                
+            }}
+        />
+
+        <AuthStack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{
+                headerTransparent: true,
             }}
         />
 

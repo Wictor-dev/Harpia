@@ -6,28 +6,37 @@ import { styles } from "./styles";
 import { TextField } from '../../components/TextField';
 import { ScrollView } from "react-native-gesture-handler";
 
-import {api} from '../../services/api.js'
+import { useNavigation } from '@react-navigation/native';
+import {api} from '../../services/api.js';
+import {useAuth} from '../../contexts/auth';
+
 export function Publish(){
     const [selectedLanguage, setSelectedLanguage] = useState();
+    const { user } = useAuth()
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
+    const navigation = useNavigation();
     
     const fetchApi = async () => {
         const article = {
             titulo: title,
             descricao: description,
             categoria: selectedLanguage,
-            idLivro: '6171ad196164736e856ac344'
+            localizacao: 'Teresina - PI',
+            idUsuario: user?._id
+            
         }
         try{
             await api.post('postagens/criar', article)
+            navigation.navigate('home')
         }
         catch(error){
             console.log(error)
         } 
     }
 
+    
     const itemPicker = () => {
         if (selectedLanguage == 'venda'){
             return (

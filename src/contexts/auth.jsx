@@ -4,10 +4,13 @@ import { View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
 
+import { useNavigation } from '@react-navigation/core';
 
 const AuthContext= createContext({});
 
 export const AuthProvider = ({children}) => {
+    const navigation = useNavigation();
+
     const [user, setUser] = useState(null);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -55,10 +58,16 @@ export const AuthProvider = ({children}) => {
         AsyncStorage.clear().then(()=>{setUser(null)});
     }
 
-    
+    async function signUp(article){
+        try{
+            await api.post('usuarios/criar', article).then(()=>{navigation.navigate('InitialScreen')})
+        } catch(e){
+            console.log(e)
+        }
+    }
 
     return (
-        <AuthContext.Provider value={{signed: !!user, user, signIn, signOut, loading}}>
+        <AuthContext.Provider value={{signed: !!user, user, signIn, signOut, loading, signUp}}>
             {children}
         </AuthContext.Provider>
     )

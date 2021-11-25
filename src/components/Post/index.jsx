@@ -1,20 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {View, Text, TouchableOpacity,Image} from 'react-native'
 import {Avatar} from "../Avatar"
 
 import {FontAwesome5} from "@expo/vector-icons";
 
-// import {ImagePost} from "../ImagePost";
-
+import {api} from '../../services/api.js'
 import { styles } from "./style"
 
 export default function Post(props){
+    const [userPost, setUserPost] = useState({});
+    
+    useEffect(()=>{
+        const fetchUser = async () => {
+            const {data} = await api.get(`usuarios/${props.userId}`);
+    
+            setUserPost(data);
+        }
+
+        fetchUser()
+    },[])
+    
     return (
         <View style={styles.post} /*onPress={props.onPress}*/>
             <View style={styles.userPost}>
                 <View style={styles.user}>
                     <View style={styles.perfil}><Avatar  uri="https://www.github.com/Wictor-dev.png" width={55} height={55} /></View>
-                    <Text style={styles.name}>Wictor Gabriel</Text>
+                    <Text style={styles.name}>{userPost.nome}</Text>
                 </View>
                 <FontAwesome5 name='money-bill' size={30} color="#000"  />
             </View>

@@ -1,14 +1,21 @@
-import React from 'react';
-import {Text, View, ScrollView, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, View, ScrollView, Image, FlatList} from 'react-native';
 
 import { styles } from './style';
 import { Ranking } from '../../components/Ranking';
 import Post from '../../components/Post';
 import { useAuth } from '../../contexts/auth';
+import { usePost } from '../../contexts/postsContext';
 
 
 export function Perfil(){
     const {user} = useAuth();
+    const {posts} = usePost();
+    function handlePostDetail(){
+        navigation.navigate('PostDetail')
+    }
+
+
     return (
         <ScrollView  showsVerticalScrollIndicator={false} >
             <View style={styles.infoUser}>
@@ -30,7 +37,7 @@ export function Perfil(){
                 <Text>Trocas</Text>
                 <Text>Vendas</Text>
             </View>
-            <View style={styles.dividerOther}>
+            <View style={styles.dividerContainer}>
                 <View style={styles.divider} />
             </View>
             <View style={styles.infoUserOther}>
@@ -54,8 +61,16 @@ export function Perfil(){
                     <Text style={styles.titlePosts}>Posts</Text>
                 </View>
                 <View style={styles.postsContainer}>
-                    <Post />
-                    <Post />
+                <FlatList 
+                    style={styles.postsContainer}
+                    showsVerticalScrollIndicator={false}
+                    data={posts}
+                    keyExtractor={post => post?._id}
+                    renderItem={({item})=>{
+                        return (
+                            (item?.idUsuario == user._id) ? (<Post userId={item?.idUsuario} titulo={item?.titulo} descricao={item?.descricao} handlePostDetail={handlePostDetail} />) : (<Text></Text>)
+                        )}}
+                />
                 </View>
             </View>
         </ScrollView>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {View, Button, Text, TextInput, ImageBackground, TouchableHighlight} from 'react-native';
 
-import { TextField } from '../../components/TextField';
 import {styles} from './styles';
 
 import {useAuth} from '../../contexts/auth';
@@ -19,7 +18,6 @@ export function SignIn(){
 
     return(
         <ImageBackground source={require('../../assets/backgroundSignIn.png')} style={{width: '100%', height: '100%'}}>
-        {/* <Image source={imgBackground} style={{flex:1, resizeMode: 'cover'}}/> */}
             <View style={styles.signInContainer}>
                 <View style={styles.fieldContainer}>
                     <TextInput 

@@ -39,7 +39,7 @@ export function DrawerNavigationCustom(props) {
                     icon = { ({color, size}) => (
                         <Ionicons name="home" size={size} color={color}/>
                     )}
-                    onPress={ () => navigation.navigate('Home') }
+                    onPress={ () => navigation.navigate('home') }
                 />
 
                 <DrawerItem
