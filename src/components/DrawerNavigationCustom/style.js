@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {theme} from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
 
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     profile:{
         alignItems: "center",
         padding: 10,
-        backgroundColor: '#4396DF'
+        backgroundColor: theme.colors.secondary100
     },
     ranking:{
         marginTop: 10,
@@ -17,7 +18,7 @@ export const styles = StyleSheet.create({
     },
     buttonVerPerfil:{
         borderRadius: 10,
-        backgroundColor: "#90E0EF",
+        backgroundColor: theme.colors.secondary60,
         padding: 5,
     }
 });

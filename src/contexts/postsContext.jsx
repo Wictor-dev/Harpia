@@ -9,11 +9,11 @@ export const PostProvider = ({children}) => {
 
     useEffect(()=>{
         const fetchApi = async ()=>{
-            const {data} = await api.get('postagens')
+            const {data} = await api.get('postagem/getAll')
             setPosts(data)
         }
         fetchApi();
-    }, [])
+    }, [posts])
 
     return (
         <PostContext.Provider value={{posts}}>

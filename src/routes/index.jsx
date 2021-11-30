@@ -4,6 +4,7 @@ import {useAuth} from '../contexts/auth';
 import {AuthRoutes} from './auth.routes';
 import AppRoutes from './app.routes';
 import { ActivityIndicator, View } from 'react-native';
+import { Background } from '../components/Background';
 
 export const Routes = () => {
     const { signed, loading } = useAuth();
@@ -15,5 +16,10 @@ export const Routes = () => {
 
         )
     }
-    return signed ? <AppRoutes /> : <AuthRoutes />
+    return signed ? 
+        <Background>
+            <AppRoutes />
+        </Background> 
+        : 
+        <AuthRoutes />
 }

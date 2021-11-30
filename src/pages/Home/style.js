@@ -1,18 +1,22 @@
 import {StyleSheet } from 'react-native';
-
+import {theme} from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
+    homeContainer:{
+        backgroundColor: theme.colors.secondary100
+    },
     postsContainer: {
-        width: '90%',
+        width: '100%',
         margin: '5%',
+        alignSelf: 'center',
+        backgroundColor: '#fff'
     },
     filterContainer:{
-        // borderWidth: 1,
-        // borderColor: 'red',
         width: '60%',
-        marginTop: '5%',
+        marginTop: '15%',
         marginLeft: '20%',
         marginRight: '20%',
+        
         // margin: '5% 20% 0 20%', se fizer nessa maneira o Expo fecha
     }
 })

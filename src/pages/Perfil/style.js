@@ -1,11 +1,13 @@
 import {StyleSheet} from 'react-native';
 
+import { theme } from '../../global/styles/theme';
+
 export const styles = StyleSheet.create({
 
     infoUser:{
         width: '100%',
         height: 320,
-        backgroundColor: '#00B4D8',
+        backgroundColor: theme.colors.secondary100,
         flexDirection: 'column',
         alignItems: 'center',
         padding: 10,

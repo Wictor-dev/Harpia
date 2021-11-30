@@ -1,24 +1,30 @@
 import {StyleSheet} from 'react-native'
+import {theme} from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
     post: {
-        height: 400,
-        width: '100%',
-        backgroundColor: '#fff',
+        height: 420,
+        // backgroundColor: '#fff',
+        // backgroundColor: theme.colors.secondary90,
         marginBottom: 10,
         borderRadius: 10
     },
     userPost: {
         flexDirection: 'row',
+        alignSelf: 'center',
         alignItems: "center",
         justifyContent: "space-between",
         padding: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        
+        // marginLeft: 10,
+        // marginRight: 10,     
+        width: '100%'
     },
-    perfil: {
-        
+    name:{
+        marginLeft: 3,
+        marginTop: 15,
+        fontSize: 15,
+    },
+    perfil: {      
         //marginLeft: 5,
         //marginBottom: 5,
         // width: 60,
@@ -31,29 +37,28 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     bookImageContainer: {
-        backgroundColor: '#ccc',
+        // backgroundColor: '#ccc',
         width: '90%',
-        height: '60%',
-        margin: '5%'
-    },
-    bookName:{
-        marginLeft: 20,
-        fontSize: 15
-    },
-    name:{
-        marginLeft: 3,
-        marginTop: 15
+        // height: '65%',
+        marginLeft: '8%',
     },
     imagePost:{
         width: '100%',
-        height: '100%', 
+        height: 300, 
+        borderRadius: 10
+    },
+    bookName:{
+        marginLeft: '8%',
+        fontSize: 15,
     },
     bottomPost: {
         width: '90%',
         alignSelf: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-between'
-        
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // marginTop: 20,
+        marginLeft: '8%',
     }
 
 })

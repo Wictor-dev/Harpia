@@ -1,122 +1,120 @@
 import React, {useState, useEffect} from "react";
-import { View, TextInput, Text, Button } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 
 import { styles } from "./styles";
-import { TextField } from '../../components/TextField';
-import { ScrollView } from "react-native-gesture-handler";
 
+import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
-import {api} from '../../services/api.js';
 import {useAuth} from '../../contexts/auth';
+import { Background } from "../../components/Background";
+import { Fields } from "../../components/Fields";
+
+import * as ImagePicker from 'expo-image-picker';
 
 export function Publish(){
-    const [selectedLanguage, setSelectedLanguage] = useState();
     const { user } = useAuth()
+    const [selectedLanguage, setSelectedLanguage] = useState('doar');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
+    const [image, setImage] = useState(null);
+
     const navigation = useNavigation();
     
-    const fetchApi = async () => {
+    const submit = () => {
         const article = {
             titulo: title,
             descricao: description,
             categoria: selectedLanguage,
-            localizacao: 'Teresina - PI',
-            idUsuario: user?._id
-            
+            idUsuario: user?._id       
         }
-        try{
-            await api.post('postagens/criar', article)
-            navigation.navigate('home')
+        if (article.titulo !=='' && article.descricao !=='' ){
+            navigation.navigate('publishLocal', article)
+        } else {
+            console.log('Insira os valores necessários')
         }
-        catch(error){
-            console.log(error)
-        } 
+        
     }
 
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+      }, []);
+
+      const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
     
-    const itemPicker = () => {
-        if (selectedLanguage == 'venda'){
-            return (
-                <TextField 
-                    label={'Valor'}
-                    placeholder={'Digite o valor'}
-                />
-            )
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
         }
-        else if (selectedLanguage === 'troca') {
-            return (
-                <TextField 
-                label={'Itens de interesse'}
-                placeholder={'Digite os itens que você quer...'}
-                />
-            )
-        }
-        else if (selectedLanguage==='emprestimo'){
-            return (
-                <>
-                    <TextField 
-                        label={'Valor'}
-                        placeholder={'Digite o valor'}
-                    />
-                    <TextField 
-                        label={'Data de devolução'}
-                        placeholder={'Digite a data de devolução...'}
-                    />
-                </>
-            )
-        }
-    }
+      };
 
-    const extraFields = itemPicker()
     return (
-        <ScrollView  style={styles.publishContainer} contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
+        <Background>
+            <ScrollView  style={styles.publishContainer} contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
 
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Título</Text>
-                <TextInput 
-                    onChangeText={(title) => setTitle(title)}   
-                    style={styles.input}
-                    placeholder="Digite o título"
-                    defaultValue={title}
-                    />
-            </View>
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Descrição</Text>
-                <TextInput 
-                    onChangeText={(desc) => setDescription(desc)}   
-                    style={styles.input}
-                    placeholder="Digite a sinopse"
-                    defaultValue={description}
-                    />
-            </View>
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}>Título</Text>
+                        <TextInput 
+                            onChangeText={(title) => setTitle(title)}   
+                            style={styles.input}
+                            placeholder="Digite o título"
+                            defaultValue={title}
+                            
+                            />
+                </View>
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}>Descrição</Text>
+                        <TextInput 
+                            onChangeText={(desc) => setDescription(desc)}   
+                            style={styles.input}
+                            placeholder="Digite a sinopse"
+                            defaultValue={description}
+                            />
+                </View>
 
-            <Text style={styles.categoryTitle}>Categoria</Text>
-            <View style={styles.category}>
-                <Picker  
-                    itemStyle={{backgroundColor:'#000'}}
-                    selectedValue={selectedLanguage}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedLanguage(itemValue)
-                    }>
-                    <Picker.Item label="Doar" value="doar" />
-                    <Picker.Item label="Vender" value="venda" />
-                    <Picker.Item label="Trocar" value="troca" />
-                    <Picker.Item label="Emprestar" value="emprestimo" />
-                </Picker>
-            </View>
-            {extraFields}
-            <View style={styles.image}>
-                <Text>Escolher Imagem</Text>
-            </View>
-            
-            <Button 
-                onPress={fetchApi}
-                title={"Continuar"}
-            />
-        </ScrollView>
+                <Text style={styles.categoryTitle}>Categoria</Text>
+                <View style={styles.category}>
+                    <Picker  
+                            itemStyle={{backgroundColor:'#000'}}
+                            selectedValue={selectedLanguage}
+                            onValueChange={(itemValue, itemIndex) =>
+                                setSelectedLanguage(itemValue)
+                            }>
+                            <Picker.Item label="Doar" value="doar" />
+                            <Picker.Item label="Vender" value="venda" />
+                            <Picker.Item label="Trocar" value="troca" />
+                            <Picker.Item label="Emprestar" value="emprestimo" />
+                    </Picker>
+                </View>
+                <Fields categoria={selectedLanguage} />
+                <View style={styles.image}>
+                    <TouchableOpacity onPress={pickImage}>
+                        <Text>Escolher Imagem</Text>
+                    </TouchableOpacity>
+                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                </View>
+
+                <TouchableOpacity onPress={submit} style={styles.submit}>
+                    <Text style={styles.textSubmit}>Continuar</Text>
+                </TouchableOpacity>
+            </ScrollView>
+        </Background>
+        
     )
 
     

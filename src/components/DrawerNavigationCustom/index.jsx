@@ -16,13 +16,13 @@ import {useAuth} from "../../contexts/auth";
 
 export function DrawerNavigationCustom(props) {
 
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
     const navigation =  useNavigation();
     function handleSignOut(){
         signOut();
     }
     function handleScreenPerfil(){
-        navigation.navigate('perfil')
+        navigation.navigate('perfil', user)
     }
     return (
         <SafeAreaView style={styles.container}>

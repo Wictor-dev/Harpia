@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { Text } from 'react-native';
 import {PostDetail} from '../pages/PostDetail';
 
 import {DrawerNavigation} from "./DrawerNavigation";
@@ -13,6 +12,8 @@ import { Publish } from '../pages/Publish';
 import { Notifications } from '../pages/Notifications';
 import { OpenedChat } from '../pages/OpenedChat';
 
+import { theme } from '../global/styles/theme'
+import { PublishLocal } from '../pages/Publish/PublishLocal';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,7 @@ function AppRoutes(){
         
             <Stack.Navigator
                 screenOptions={{
-                    headerTitleAlign:'center'
+                    headerTitleAlign:'center',               
                 }}
             >
 
@@ -29,8 +30,7 @@ function AppRoutes(){
                     name='home' 
                     component={DrawerNavigation}
                     options={{
-                        headerShown: false,
-                        
+                        headerShown: false,                      
                     }}
                 />
 
@@ -40,9 +40,8 @@ function AppRoutes(){
                     options={{
                         title: 'Detalhes do Post',
                         back: true,
-                        // headerStyle: {backgroundColor: 'red'},
-                        headerRight: () => (<Text>Empréstimo</Text>)
-                        
+                        headerStyle: {backgroundColor: theme.colors.secondary100},
+                        headerTintColor: 'white'
                     }}
                 />
                 <Stack.Screen
@@ -64,7 +63,15 @@ function AppRoutes(){
                         
                     }}
                 />
-
+                <Stack.Screen
+                    name='publishLocal'
+                    component={PublishLocal}
+                    options={{
+                        title: 'Publicar',
+                        back: true
+                        
+                    }}
+                />
                 <Stack.Screen
                     name='chat'
                     component={Chat}

@@ -1,29 +1,21 @@
 import { StyleSheet } from "react-native";
+import {theme} from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
-    container:{
-        flex: 1
+    postContainer:{
+        flex: 1,
     },
     imagePost:{
         width: '100%',
         height: 300
     },
-    description:{
-        paddingTop: 10,
-        paddingRight: 10,
+    postInformation:{
+        height: 200,
         paddingLeft:10,
-        //textAlign: 'justify'
-    },
-    dividerContainer:{
-        alignItems: 'center'
-    },
-    divider:{
-        borderBottomWidth: 1,
-        width: '70%',
-        marginTop: 10,
-        marginBottom: 10
-        
-        
+        paddingRight: 10
+    }, 
+    title:{
+        fontSize: 23
     },
     infoPost:{
         flex: 1,
@@ -32,11 +24,20 @@ export const styles = StyleSheet.create({
     infoPostRow:{
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
-        marginLeft: 10,
-        marginRight: 10
+        justifyContent: "space-between",        
     },
     textInfo:{
-        fontSize: 13
+        fontSize: 15
+    },
+    delete: {
+        backgroundColor: theme.colors.primary,
+        width: 100,
+        height: 30,
+        borderRadius: 10,
+        justifyContent: 'center'
+    },
+    textDelete:{
+        color: '#fff',
+        textAlign: 'center',
     }
 })

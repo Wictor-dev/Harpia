@@ -8,19 +8,13 @@ import Filter from '../../components/Filter';
 
 import { styles } from './style';
 import { usePost } from '../../contexts/postsContext';
+import { Background } from '../../components/Background';
+import { LineBottom } from '../../components/LineBottom';
 export function Home(){
-    const navigation = useNavigation();
-
     const {posts} = usePost();
 
-    function handlePostDetail(){
-        navigation.navigate('PostDetail')
-    }
-
     return (
-        <View 
-            style={{backgroundColor: '#00B4D8'}}
-        >
+        <View style={styles.homeContainer} >
             <View style={styles.filterContainer}>
                 <Filter />
             </View>
@@ -31,9 +25,12 @@ export function Home(){
                     keyExtractor={post => post?._id}
                     renderItem={({item})=>{
                         return (
-                            <Post userId={item?.idUsuario} titulo={item?.titulo} descricao={item?.descricao} handlePostDetail={handlePostDetail} />
-                        )}}
-                />
+                            <>
+                                <Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id}  />
+                                <LineBottom />
+                            </>
+                            )}}
+            />
         </View>
     )
 }

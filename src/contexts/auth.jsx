@@ -35,14 +35,14 @@ export const AuthProvider = ({children}) => {
         loadStoragedData();
     },[]);
     async function getUsuarios(){
-        const {data} = await api.get('/usuarios');
+        const {data} = await api.get('/usuario');
         setUsers(data)
     }
     async function signIn(emailProp, senhaProp){
         getUsuarios();
         const userEncounter = users.find(user => user?.email == emailProp && user?.senha == senhaProp);
 
-        const {data} = await api.get(`/usuarios/${userEncounter._id}`);
+        const {data} = await api.get(`/usuario/${userEncounter._id}`);
         
         setUser(data);
 
@@ -60,7 +60,7 @@ export const AuthProvider = ({children}) => {
 
     async function signUp(article){
         try{
-            await api.post('usuarios/criar', article).then(()=>{navigation.navigate('InitialScreen')})
+            await api.post('usuario/criar', article).then(()=>{navigation.navigate('InitialScreen')})
         } catch(e){
             console.log(e)
         }

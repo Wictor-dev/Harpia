@@ -6,13 +6,16 @@ import { Ranking } from '../../components/Ranking';
 import Post from '../../components/Post';
 import { useAuth } from '../../contexts/auth';
 import { usePost } from '../../contexts/postsContext';
+import { useNavigation } from '@react-navigation/core';
 
 
-export function Perfil(){
-    const {user} = useAuth();
+export function Perfil({route}){
+    const navigationReact = useNavigation()
+    const user = route.params;
     const {posts} = usePost();
+
     function handlePostDetail(){
-        navigation.navigate('PostDetail')
+        navigationReact.navigate('PostDetail')
     }
 
 
@@ -68,7 +71,7 @@ export function Perfil(){
                     keyExtractor={post => post?._id}
                     renderItem={({item})=>{
                         return (
-                            (item?.idUsuario == user._id) ? (<Post userId={item?.idUsuario} titulo={item?.titulo} descricao={item?.descricao} handlePostDetail={handlePostDetail} />) : (<Text></Text>)
+                            (item?.idUsuario == user._id) ? (<Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id} />) : (<></>)
                         )}}
                 />
                 </View>
