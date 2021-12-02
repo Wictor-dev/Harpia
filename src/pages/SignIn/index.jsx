@@ -4,6 +4,7 @@ import {View, Button, Text, TextInput, ImageBackground, TouchableHighlight} from
 import {styles} from './styles';
 
 import {useAuth} from '../../contexts/auth';
+import { ScrollView } from 'react-native';
 // import backgroundSignIn from '../../assets/backgroundSignIn.png';
 
 // const image = { uri: "https://reactjs.org/logo-og.png" };
@@ -18,6 +19,7 @@ export function SignIn(){
 
     return(
         <ImageBackground source={require('../../assets/backgroundSignIn.png')} style={{width: '100%', height: '100%'}}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 15}}>
             <View style={styles.signInContainer}>
                 <View style={styles.fieldContainer}>
                     <TextInput 
@@ -41,6 +43,7 @@ export function SignIn(){
                     <Text style={styles.text}>Sign In</Text>
                 </TouchableHighlight>
             </View>
+            </ScrollView>
         </ImageBackground>
     )
 }
