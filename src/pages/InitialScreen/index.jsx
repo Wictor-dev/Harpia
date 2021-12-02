@@ -5,6 +5,7 @@ import {styles} from './styles';
 import BookImg from '../../assets/BookLogin.png';
 import { useNavigation } from '@react-navigation/core';
 import { Ionicons, Feather } from '@expo/vector-icons';
+import { ScrollView } from 'react-native';
 
 export function InitialScreen(){
     const navigation = useNavigation();
@@ -18,7 +19,8 @@ export function InitialScreen(){
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 10}} >
+        <View >
             <Image source={BookImg} style={styles.img} resizeMode='stretch' />
             <View style={styles.textContainer}>
                 <Text style={styles.title}>Compartilhe Experiências</Text>
@@ -51,5 +53,6 @@ export function InitialScreen(){
                 </View>
             </View>
         </View>
+        </ScrollView>
     )
 }
