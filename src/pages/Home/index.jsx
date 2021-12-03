@@ -18,19 +18,22 @@ export function Home(){
             <View style={styles.filterContainer}>
                 <Filter />
             </View>
-            <FlatList 
-                    style={styles.postsContainer}
-                    showsVerticalScrollIndicator={false}
-                    data={posts}
-                    keyExtractor={post => post?._id}
-                    renderItem={({item})=>{
-                        return (
-                            <>
-                                <Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id}  />
-                                <LineBottom />
-                            </>
-                            )}}
-            />
+            <View style={styles.postsContainer}>
+                <FlatList 
+                        
+                        showsVerticalScrollIndicator={false}
+                        data={posts}
+                        keyExtractor={post => post?._id}
+                        renderItem={({item})=>{
+                            return (
+                                <>
+                                    <Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id}  />
+                                    <LineBottom />
+                                </>
+                                )}}
+                />
+            </View>
+            
         </View>
     )
 }

@@ -11,10 +11,12 @@ import { Background } from "../../components/Background";
 import { Fields } from "../../components/Fields";
 
 import * as ImagePicker from 'expo-image-picker';
+import { useExtraField } from "../../contexts/ExtraFields";
 
 export function Publish(){
     const { user } = useAuth()
-    const [selectedLanguage, setSelectedLanguage] = useState('doar');
+    const {valor, handleValor} = useExtraField()
+    const [selectedCategory, setSelectedCategory] = useState('doar');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
@@ -23,20 +25,29 @@ export function Publish(){
     const navigation = useNavigation();
     
     const submit = () => {
-        const article = {
-            titulo: title,
-            descricao: description,
-            categoria: selectedLanguage,
-            idUsuario: user?._id       
-        }
-        if (article.titulo !=='' && article.descricao !=='' ){
-            navigation.navigate('publishLocal', article)
-        } else {
-            console.log('Insira os valores necessários')
-        }
-        
-    }
+        if (title && selectedCategory && description && image){
+            const filename = image.split('/').pop();
+            const match = /\.(\w+)$/.exec(filename);
+            const type = match ? `image/${match[1]}` : `image`;
+            const imagem = new FormData();       
+            imagem.append('file', { uri: image, name: filename, type }) 
+            imagem.append('titulo', title)
+            imagem.append('descricao', description)
+            imagem.append('categoria', selectedCategory)
+            imagem.append('idUsuario', user?._id)
 
+            if (selectedCategory === 'venda' || selectedCategory === 'emprestimo'){
+                imagem.append('valor', Number(valor))
+            }
+            
+            navigation.navigate('publishLocal', imagem)
+        }else {
+            console.log(valor)
+            console.log('Dados faltando')
+        }
+
+    }
+       
     useEffect(() => {
         (async () => {
           if (Platform.OS !== 'web') {
@@ -47,30 +58,32 @@ export function Publish(){
           }
         })();
       }, []);
+    
 
-      const pickImage = async () => {
+    const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
-    
-        console.log(result);
-    
-        if (!result.cancelled) {
-          setImage(result.uri);
-        }
-      };
+        
+        // console.log(result);
 
+        if (!result.cancelled) {
+            setImage(result.uri)
+        }
+        
+    };
+   
     return (
         <Background>
             <ScrollView  style={styles.publishContainer} contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
-
                 <View style={styles.formContainer}>
                     <Text style={styles.label}>Título</Text>
                         <TextInput 
                             onChangeText={(title) => setTitle(title)}   
+                            // onChange={handleValor}
                             style={styles.input}
                             placeholder="Digite o título"
                             defaultValue={title}
@@ -91,9 +104,9 @@ export function Publish(){
                 <View style={styles.category}>
                     <Picker  
                             itemStyle={{backgroundColor:'#000'}}
-                            selectedValue={selectedLanguage}
+                            selectedValue={selectedCategory}
                             onValueChange={(itemValue, itemIndex) =>
-                                setSelectedLanguage(itemValue)
+                                setSelectedCategory(itemValue)
                             }>
                             <Picker.Item label="Doar" value="doar" />
                             <Picker.Item label="Vender" value="venda" />
@@ -101,17 +114,19 @@ export function Publish(){
                             <Picker.Item label="Emprestar" value="emprestimo" />
                     </Picker>
                 </View>
-                <Fields categoria={selectedLanguage} />
+                <Fields categoria={selectedCategory} />
                 <View style={styles.image}>
+                    {image ? <Image source={{ uri: image }} style={{ width: 313, height: 198, borderRadius: 5 }} /> : 
                     <TouchableOpacity onPress={pickImage}>
                         <Text>Escolher Imagem</Text>
-                    </TouchableOpacity>
-                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                    </TouchableOpacity>}
+                    {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
                 </View>
 
                 <TouchableOpacity onPress={submit} style={styles.submit}>
                     <Text style={styles.textSubmit}>Continuar</Text>
                 </TouchableOpacity>
+
             </ScrollView>
         </Background>
         

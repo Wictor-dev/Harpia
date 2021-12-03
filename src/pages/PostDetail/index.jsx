@@ -12,6 +12,7 @@ export function PostDetail({route}){
     const {user} = useAuth();
     const navigation = useNavigation()
     const [post, setPost] = useState({});
+    const [image, setImage] = useState({})
     const [userPost, setUserPost] = useState({});
     useEffect(()=> {
         async function getPost(){
@@ -21,6 +22,23 @@ export function PostDetail({route}){
         }
 
         getPost()
+    },[])
+
+    useEffect(()=>{
+        const fetchImage = async () => {
+            try {
+                const {data} = await api.get('postagem/imagem');
+                
+                const imageFinder = data.find(image => image.postagemId === route.params)
+
+                setImage(imageFinder)
+                
+            } catch(e){
+                console.log(e)
+            }
+        }
+
+        fetchImage()
     },[])
     
     const verificarIgualdade = () => user._id === post.idUsuario;
@@ -38,12 +56,12 @@ export function PostDetail({route}){
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style= {styles.postContainer}>
                 <View>
-                    <Image style={styles.imagePost} source={{uri: "https://cf.shopee.com.br/file/c072b86d0c3184e4c9735cc13ce796fe"}} />
+                    <Image style={styles.imagePost} source={{uri: image?.url}} />
                 </View>
                 <View style={styles.postInformation}>
                     {post.categoria == 'venda' ? 
                         <View style={styles.venda}>
-                            <Text style={styles.title}>R$ 23,99</Text>
+                            <Text style={styles.title}>R$ {post.valor}</Text>
                             <LineBottom />
                         </View>
                         :

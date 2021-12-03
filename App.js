@@ -6,6 +6,7 @@ import { Routes } from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
 import { PostProvider } from './src/contexts/postsContext';
+import { ExtraFieldProvider } from './src/contexts/ExtraFields';
 
 export default function App() {
   
@@ -15,7 +16,9 @@ export default function App() {
         <StatusBar style="light" backgroundColor='#000' translucent={false} />
         <AuthProvider value={{signed:false}}>
           <PostProvider>
-            <Routes />
+            <ExtraFieldProvider>
+              <Routes />
+            </ExtraFieldProvider>
           </PostProvider>
         </AuthProvider>
     </NavigationContainer>

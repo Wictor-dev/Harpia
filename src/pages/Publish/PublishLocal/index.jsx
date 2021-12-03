@@ -18,14 +18,19 @@ export function PublishLocal({route}){
 
     const navigation = useNavigation();
 
-    const article = route.params
-
+    const imagem = route.params
+    console.log(imagem)
     const fetchApi = async () => {
-        article.bairro = bairro
-        article.cidade = cidade
-        article.estado = estado
+        // article.bairro = bairro
+        // article.cidade = cidade
+        // article.estado = estado
         try{
-            await api.post('postagens/criar', article)
+            await api.post('postagem/criar', imagem, {
+                headers:{
+                    "Accept": "application/json",
+                    "content-type":"multipart/form-data"
+                }
+            })
             navigation.navigate('home')
 
         }

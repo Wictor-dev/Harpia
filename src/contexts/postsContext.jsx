@@ -9,8 +9,13 @@ export const PostProvider = ({children}) => {
 
     useEffect(()=>{
         const fetchApi = async ()=>{
-            const {data} = await api.get('postagem/getAll')
-            setPosts(data)
+            try {
+                const {data} = await api.get('/postagem/getAll')
+                setPosts(data)
+                
+            } catch(e){
+                console.log(e)
+            }
         }
         fetchApi();
     }, [posts])

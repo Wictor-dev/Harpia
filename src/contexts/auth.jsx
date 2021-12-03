@@ -35,22 +35,29 @@ export const AuthProvider = ({children}) => {
         loadStoragedData();
     },[]);
     async function getUsuarios(){
-        const {data} = await api.get('/usuario');
-        setUsers(data)
+        try{
+            const {data} = await api.get('/usuario');
+            setUsers(data)
+        } catch (e) {
+            console.log(e)
+        }
     }
     async function signIn(emailProp, senhaProp){
         getUsuarios();
-        const userEncounter = users.find(user => user?.email == emailProp && user?.senha == senhaProp);
-
-        const {data} = await api.get(`/usuario/${userEncounter._id}`);
-        
-        setUser(data);
-
-        api.defaults.headers['Authorization'] = `Bearer ${data._id}`;
-        
-        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(data));
-        await AsyncStorage.setItem('@RNAuth:token', JSON.stringify(data._id));
-       
+        try {
+            const userEncounter = users.find(user => user?.email === emailProp && user?.senha === senhaProp);
+    
+            const {data} = await api.get(`/usuario/${userEncounter._id}`);
+            
+            setUser(data);
+    
+            api.defaults.headers['Authorization'] = `Bearer ${data._id}`;
+            
+            await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(data));
+            await AsyncStorage.setItem('@RNAuth:token', JSON.stringify(data._id));
+        } catch (e){
+            console.log(e)
+        }
     }
 
 
@@ -60,7 +67,7 @@ export const AuthProvider = ({children}) => {
 
     async function signUp(article){
         try{
-            await api.post('usuario/criar', article).then(()=>{navigation.navigate('InitialScreen')})
+            await api.post('/usuario/criar', article).then(()=>{navigation.navigate('InitialScreen')})
         } catch(e){
             console.log(e)
         }

@@ -13,15 +13,37 @@ export default function Post(props){
     const navigation = useNavigation();
 
     const [userPost, setUserPost] = useState({});
+    const [image, setImage] = useState({});
     const [like, setLike] = useState(false);
     useEffect(()=>{
         const fetchUser = async () => {
-            const {data} = await api.get(`usuario/${props.userId}`);
+            try {
+                const {data} = await api.get(`/usuario/${props.userId}`);
+                setUserPost(data);
+            } catch (e) {
+                console.log(e)
+            }
     
-            setUserPost(data);
         }
 
         fetchUser()
+    },[])
+
+    useEffect(()=>{
+        const fetchImage = async () => {
+            try {
+                const {data} = await api.get('/postagem/imagem');
+                
+                const imageFinder = data.find(image => image.postagemId === props.postId)
+
+                setImage(imageFinder)
+                
+            } catch(e){
+                console.log(e)
+            }
+        }
+
+        fetchImage()
     },[])
     
     function handlePerfil(){
@@ -37,15 +59,15 @@ export default function Post(props){
             <View style={styles.userPost}>
                 <TouchableOpacity style={styles.user} onPress={handlePerfil}>
                     <View style={styles.perfil}><Avatar  uri="https://www.github.com/Wictor-dev.png" width={55} height={55}/></View>
-                    <Text style={styles.name}>{userPost.nome}</Text>
+                    <Text style={styles.name}>{userPost?.nome}</Text>
                 </TouchableOpacity>
                 <IconPost categoria= {props.categoria} />
             </View>
             <Text style={styles.bookName}>{props.titulo}</Text>
-            {/* <Text style={[styles.bookName, {fontSize: 15}]}>{props.descricao}</Text> */}
+            <Text style={[styles.bookName, {fontSize: 15}]}>{props.descricao}</Text>
             <TouchableOpacity style= {styles.bookImageContainer} onPress={handlePostDetail}  >
-                
-                <Image style= {styles.imagePost} source={{ uri: 'https://cf.shopee.com.br/file/c072b86d0c3184e4c9735cc13ce796fe'}} />
+                <Image style={styles.imagePost} source={{uri: image?.url}} />
+                {/* <Image style={styles.imagePost} source={{uri: 'https://harpia-api.s3.amazonaws.com/5d5763f627b28194e8dd42aadc0dce33-2c477edf-9b04-45d7-85c9-cca76433853b.jpg'}} /> */}
             </TouchableOpacity>
             <View style={styles.bottomPost}>
                 <Text style={styles.postLocation}>Poty Velho - Teresina</Text>
