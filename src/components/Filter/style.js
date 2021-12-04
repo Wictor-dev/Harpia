@@ -2,13 +2,6 @@ import {StyleSheet} from 'react-native';
 import {theme} from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
-    filter:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-
-
-        
-    },
     localization:{
         alignSelf: 'flex-start'
     },

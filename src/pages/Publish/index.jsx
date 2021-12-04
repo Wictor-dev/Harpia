@@ -42,7 +42,6 @@ export function Publish(){
             
             navigation.navigate('publishLocal', imagem)
         }else {
-            console.log(valor)
             console.log('Dados faltando')
         }
 

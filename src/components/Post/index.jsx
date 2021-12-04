@@ -65,7 +65,7 @@ export default function Post(props){
             </View>
             <Text style={styles.bookName}>{props.titulo}</Text>
             <Text style={[styles.bookName, {fontSize: 15}]}>{props.descricao}</Text>
-            <TouchableOpacity style= {styles.bookImageContainer} onPress={handlePostDetail}  >
+            <TouchableOpacity style= {styles.bookImageContainer} onPress={handlePostDetail} >
                 <Image style={styles.imagePost} source={{uri: image?.url}} />
                 {/* <Image style={styles.imagePost} source={{uri: 'https://harpia-api.s3.amazonaws.com/5d5763f627b28194e8dd42aadc0dce33-2c477edf-9b04-45d7-85c9-cca76433853b.jpg'}} /> */}
             </TouchableOpacity>

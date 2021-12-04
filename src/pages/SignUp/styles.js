@@ -6,6 +6,14 @@ export const styles = StyleSheet.create({
         marginTop: 60,
         alignSelf: 'center'
     },
+    titleContainer:{
+        marginBottom: 20
+    },
+    title:{
+        fontSize: 50,
+        fontWeight: "bold",
+        color: '#fff',
+    }, 
     fieldContainer:{
         marginTop: 20
     },
@@ -25,6 +33,16 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         color: '#fff',
-    }
+    },
+    image:{
+        width: '100%',
+        height: 200,
+        backgroundColor: '#fff',
+        alignSelf: 'center',
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     
 })

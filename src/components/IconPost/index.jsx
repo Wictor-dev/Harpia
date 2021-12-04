@@ -1,17 +1,17 @@
 import React from 'react';
-import {Ionicons} from "@expo/vector-icons";
+import {Ionicons, Feather} from "@expo/vector-icons";
 export function IconPost({categoria}){
     if(categoria == 'doação'){
         return (
-            <Ionicons name='alert' size={30} color="#000" />
+            <Feather name="gift" size={30} color="#000" />
         )
     }
     if (categoria == 'venda'){
         return (
-            <Ionicons name='pricetags' size={30} color="#000" />
+            <Feather name="tag" size={30} color="#000" />
         )
     }
-    if (categoria == 'doação'){
+    if (categoria == 'emprestimo'){
         return (
             <Ionicons name='rose' size={30} color="#000" />
         )
