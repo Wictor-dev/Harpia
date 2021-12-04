@@ -14,13 +14,19 @@ export function SignIn(){
     const [senha, setSenha] = useState('');
     const { signIn } = useAuth();
     function handleSignIn(){
-        signIn(email, senha);
+        if (email !== '' && senha !== ''){
+            signIn(email, senha);
+        } else {
+            console.log('Campos faltando')
+        }
     }
 
     return(
         <ImageBackground source={require('../../assets/backgroundSignIn.png')} style={{width: '100%', height: '100%'}}>
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 15}}>
             <View style={styles.signInContainer}>
+                <View style={styles.titleContainer}> 
+                    <Text style={styles.title}>Login</Text>
+                </View>
                 <View style={styles.fieldContainer}>
                     <TextInput 
                         onChangeText={(email) => setEmail(email)}                  
@@ -40,10 +46,9 @@ export function SignIn(){
                 </View>
                 {/* <Button title={'Sign In'} onPress={handleSignIn} /> */}
                 <TouchableHighlight underlayColor={'#ccc'} onPress={handleSignIn} style={styles.buttonSubmit}>
-                    <Text style={styles.text}>Sign In</Text>
+                    <Text style={styles.text}>Entrar</Text>
                 </TouchableHighlight>
             </View>
-            </ScrollView>
         </ImageBackground>
     )
 }

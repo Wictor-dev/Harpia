@@ -3,19 +3,31 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     signInContainer: {
         width: '90%',
-        marginTop: 60,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        height: '100%',
+        justifyContent: 'center',
+        paddingBottom: 100
     },
+    titleContainer:{
+        marginBottom: 20
+    },
+    title:{
+        fontSize: 50,
+        fontWeight: "bold",
+        color: '#fff',
+    },  
     fieldContainer:{
-        marginTop: 20
+        marginBottom: 20,
     },
     input:{
         height: 50,
         backgroundColor: '#fff',
-        borderRadius: 5,      
+        borderRadius: 5,  
+        borderWidth: 1,   
+        borderColor: '#ccc' 
     },
     buttonSubmit:{
-        marginTop: 20,
+        // marginTop: 20,
         backgroundColor: '#CAF0F8',
         height: 50,
         borderRadius: 5,
