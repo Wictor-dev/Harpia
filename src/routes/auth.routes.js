@@ -23,7 +23,8 @@ export const AuthRoutes = () => (
             component={SignIn} 
             options={{
                headerTransparent: true,
-               
+               headerTintColor: '#fff',
+               headerTitleStyle: {color: 'transparent'}
             }}
         />
 
@@ -32,6 +33,8 @@ export const AuthRoutes = () => (
             component={SignUp}
             options={{
                 headerTransparent: true,
+                headerTintColor: '#fff',
+                headerTitleStyle: {color: 'transparent'}
             }}
         />
 

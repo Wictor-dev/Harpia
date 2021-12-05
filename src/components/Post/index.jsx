@@ -56,6 +56,7 @@ export default function Post(props){
 
     return (
         <View style={styles.post} /*onPress={props.onPress}*/>
+
             <View style={{width: '100%', padding: 10}}>
                 <View>
                     <View style={styles.userPost}>

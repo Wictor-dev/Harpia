@@ -9,7 +9,6 @@ import {DrawerNavigation} from "./DrawerNavigation";
 import { Perfil } from '../pages/Perfil';
 import { Chat } from '../pages/Chat';
 import { Publish } from '../pages/Publish';
-import { Notifications } from '../pages/Notifications';
 import { OpenedChat } from '../pages/OpenedChat';
 
 import { theme } from '../global/styles/theme'
@@ -87,16 +86,6 @@ function AppRoutes(){
                     component={OpenedChat}
                     options={{
                         back: true
-                    }}
-                />
-
-                <Stack.Screen
-                    name='notifications'
-                    component={Notifications}
-                    options={{
-                        title: 'Notificações',
-                        back: true
-                        
                     }}
                 />
 

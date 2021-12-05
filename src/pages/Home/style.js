@@ -13,11 +13,10 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     filterContainer:{
-        width: '60%',
+        width: '70%',
         marginTop: '15%',
-        marginLeft: '20%',
-        marginRight: '20%',
-        
-        // margin: '5% 20% 0 20%', se fizer nessa maneira o Expo fecha
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 })

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
 import { PostProvider } from './src/contexts/postsContext';
 import { ExtraFieldProvider } from './src/contexts/ExtraFields';
+import { CategoryFilterProvider } from './src/contexts/categoryFilter';
 
 export default function App() {
   
@@ -17,7 +18,9 @@ export default function App() {
         <AuthProvider value={{signed:false}}>
           <PostProvider>
             <ExtraFieldProvider>
-              <Routes />
+              <CategoryFilterProvider>
+                <Routes />
+              </CategoryFilterProvider>
             </ExtraFieldProvider>
           </PostProvider>
         </AuthProvider>

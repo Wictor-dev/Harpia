@@ -66,6 +66,7 @@ export const AuthProvider = ({children}) => {
     }
 
     async function signUp(article){
+        // console.log(article)
         try{
             await api.post('/usuario/criar', article).then(()=>{navigation.navigate('InitialScreen')})
         } catch(e){
