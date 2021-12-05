@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
+import React, {useState, useEffect, useCallback, useRef} from "react";
+import { View, TextInput, Text, TouchableOpacity, Image, Alert } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 
 import { styles } from "./styles";
@@ -13,18 +13,38 @@ import { Fields } from "../../components/Fields";
 import * as ImagePicker from 'expo-image-picker';
 import { useExtraField } from "../../contexts/ExtraFields";
 
+import { api } from "../../services/api";
+
+import axios from 'axios';
+
+
+
 export function Publish(){
     const { user } = useAuth()
     const {valor, handleValor} = useExtraField()
     const [selectedCategory, setSelectedCategory] = useState('doar');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    
 
     const [image, setImage] = useState(null);
 
+    const [hasLocationPermission, setHasLocationPermission] = useState(false);
+
+    const [logradouro, setLogradouro] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [codigoCidade, setCodigoCidade] = useState("");
+    const [enderecoLabel, setEnderecoLabel] = useState("");
+    const [cep, setCEP] = useState('');
+    const [uf, setUf] = useState('');
+    const [cidade, setCidade] = useState("");
+
+    const [color, setColor] = useState('#fff');
+    
+
     const navigation = useNavigation();
     
-    const submit = () => {
+    const submit = async () => {
         if (title && selectedCategory && description && image){
             const filename = image.split('/').pop();
             const match = /\.(\w+)$/.exec(filename);
@@ -35,18 +55,70 @@ export function Publish(){
             imagem.append('descricao', description)
             imagem.append('categoria', selectedCategory)
             imagem.append('idUsuario', user?._id)
+            imagem.append('logradouro', logradouro);
+            imagem.append('bairro', bairro);
+            imagem.append('cidade', cidade);
+            imagem.append('codigoCidade', codigoCidade);
+            imagem.append('uf', uf);
+            imagem.append('cep', cep);
 
             if (selectedCategory === 'venda' || selectedCategory === 'emprestimo'){
                 imagem.append('valor', Number(valor))
             }
+
+            try{
+                await api.post('postagem/criar', imagem, {
+                    headers:{
+                        "Accept": "application/json",
+                        "content-type":"multipart/form-data"
+                    }
+                })
+                navigation.navigate('home')
+    
+            }
+            catch(error){
+                console.log(error)
+            } 
             
-            navigation.navigate('publishLocal', imagem)
+            //navigation.navigate('publishLocal', imagem)
         }else {
             console.log(valor)
             console.log('Dados faltando')
         }
 
     }
+
+    // async function checkIfLocationEnabled () {
+        
+    //     try {
+    //         const {status} = await Location.requestForegroundPermissionsAsync();
+    //         if (status === "granted"){
+    //             setHasLocationPermission(true)
+    //             console.log(hasLocationPermission)
+    //         }
+            
+    //     } catch (error) {
+    //         console.log(error)    
+    //         alert('A Permissão para acessar a localização foi negada');
+    //     }
+        
+    // };
+
+    // const CheckIfLocationEnabled = async () => {
+        
+    //     try {
+    //         await Location.requestForegroundPermissionsAsync();
+    //         const location2 = await Location.getCurrentPositionAsync({});
+    //         setLocation(location2);
+    //         console.log(location)
+            
+    //     } catch (error) {
+    //         console.log(error)    
+    //         alert('A Permissão para acessar a localização foi negada');
+    //     }
+        
+    // };
+
        
     useEffect(() => {
         (async () => {
@@ -56,8 +128,46 @@ export function Publish(){
               alert('Sorry, we need camera roll permissions to make this work!');
             }
           }
+          //CheckIfLocationEnabled();
+          //getAndressByLocalization();
         })();
       }, []);
+    
+    const getEndereco = async () => {
+        try {
+
+            if (cep.length !== 8){
+                setEnderecoLabel("O campo CEP precisa ter 8 dígitos")
+                setColor("#ff0000")
+                return;    
+            }
+            
+            const endereco = await axios(
+                {
+                    method : "get",
+                    url: `https://viacep.com.br/ws/${cep}/json/`,
+                    responseType: "json"
+                }
+            );
+            if (endereco.data.hasOwnProperty('error')){
+                setEnderecoLabel("Endereço inválido")
+                setColor("#ff0000")
+                return;    
+            }
+
+            const {logradouro, bairro, ibge : codigoCidade, uf, localidade:cidade} = endereco.data;
+            setLogradouro(logradouro);
+            setBairro(bairro);
+            setCodigoCidade(codigoCidade);
+            setUf(uf);
+            setCidade(cidade);
+            setColor("#fff");
+            setEnderecoLabel(`${logradouro}, ${bairro}`);
+
+        } catch (error) {
+            console.log(error)  
+        }  
+    }
     
 
     const pickImage = async () => {
@@ -93,8 +203,11 @@ export function Publish(){
                 <View style={styles.formContainer}>
                     <Text style={styles.label}>Descrição</Text>
                         <TextInput 
+                            multiline={true}
+                            numberOfLines={4}
+                            underlineColorAndroid="transparent"
                             onChangeText={(desc) => setDescription(desc)}   
-                            style={styles.input}
+                            style={styles.textAreaInput}
                             placeholder="Digite a sinopse"
                             defaultValue={description}
                             />
@@ -114,6 +227,23 @@ export function Publish(){
                             <Picker.Item label="Emprestar" value="emprestimo" />
                     </Picker>
                 </View>
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}>CEP</Text>
+                        <TextInput 
+                            onChangeText={(cep) => setCEP(cep)} 
+                            keyboardType='numeric'
+                            maxLength={8}
+                            onBlur={getEndereco}  
+                            // onChange={handleValor}
+                            style={styles.input}
+                            defaultValue={cep}
+                            
+                            />
+                </View>
+                <View style={styles.formContainer}>
+                    <Text style={{fontSize:15, color: color}}>{enderecoLabel}</Text>
+                </View>
+                
                 <Fields categoria={selectedCategory} />
                 <View style={styles.image}>
                     {image ? <Image source={{ uri: image }} style={{ width: 313, height: 198, borderRadius: 5 }} /> : 

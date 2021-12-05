@@ -3,51 +3,69 @@ import {theme} from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
     post: {
-        height: 440,
-        // backgroundColor: '#fff',
+        //height: 440,
+        //backgroundColor: 'pink',
         // backgroundColor: theme.colors.secondary90,
         marginBottom: 10,
-        borderRadius: 10
+        //borderRadius: 10,
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     userPost: {
+        flex: 1,
         flexDirection: 'row',
         alignSelf: 'center',
         alignItems: "center",
         justifyContent: "space-between",
-        padding: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
+        
+
+        //backgroundColor: 'gray',
         // marginLeft: 10,
         // marginRight: 10,     
-        width: '100%'
+        //width: '100%'
     },
     name:{
-        marginLeft: 3,
-        marginTop: 15,
+        //marginLeft: 3,
+        //marginTop: 15,
         fontSize: 15,
     },
     user:{
         flexDirection: 'row',
     },
     bookImageContainer: {
-        width: '90%',
-        marginLeft: '8%',
+        //width: '100%',
+        flex: 1,
+        //marginLeft: '8%',
+        alignItems: 'center',
+        //backgroundColor: 'yellow'
+        
     },
     imagePost:{
-        width: '100%',
+        // width: '100%',
+        // height: '100%',
         height: 300, 
-        borderRadius: 10
+        width: 300,
+        //borderRadius: 10,
     },
     bookName:{
-        marginLeft: '8%',
+        //marginLeft: '8%',
         fontSize: 15,
+        paddingLeft: 10,
+        //fontWeight: 'bold'
     },
     bottomPost: {
-        width: '90%',
+        //width: '90%',
         alignSelf: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         // marginTop: 20,
-        marginLeft: '8%',
+        //marginLeft: '8%',
+        //backgroundColor: "red"
     }
 
 })

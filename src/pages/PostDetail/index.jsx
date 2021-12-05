@@ -16,9 +16,18 @@ export function PostDetail({route}){
     const [userPost, setUserPost] = useState({});
     useEffect(()=> {
         async function getPost(){
-            const {data} = await api.get(`postagem/${route.params}`)
 
-            setPost(data)
+            try {
+                const {data} = await api.get(`postagem/${route.params}`)
+                setPost(data)    
+
+                const {data : dataUser} = await api.get(`usuario/${data.idUsuario}`)
+                setUserPost(dataUser)
+
+            } catch (error) {
+                console.log(error)
+            }
+            
         }
 
         getPost()
@@ -41,7 +50,7 @@ export function PostDetail({route}){
         fetchImage()
     },[])
     
-    const verificarIgualdade = () => user._id === post.idUsuario;
+    const verificarIgualdade = user._id === post.idUsuario;
     async function deletarPost(){
         try{
             await api.delete(`postagem/deletar/${route.params}`)
@@ -53,7 +62,7 @@ export function PostDetail({route}){
 
     }
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 15}} >
             <View style= {styles.postContainer}>
                 <View>
                     <Image style={styles.imagePost} source={{uri: image?.url}} />
@@ -79,7 +88,8 @@ export function PostDetail({route}){
 
                     <View style={styles.infoPost}>
                         <View style={styles.infoPostRow}>
-                            {verificarIgualdade ? 
+                            <Text style={styles.textInfo} >Por: {userPost.nome} </Text>
+                            {/* {verificarIgualdade ? 
                                 <Text style={styles.textInfo} >Por: {user.nome} </Text>
                                 :
                                 async () => {
@@ -89,25 +99,33 @@ export function PostDetail({route}){
                                         <Text style={styles.textInfo} >Por: {data.nome} </Text>
                                     )
                                 }
-                            }
-                            <Text style={styles.textInfo} >Ano: 2005</Text>
+                            } */}
+                            <Text style={styles.textInfo} >Telefone: {userPost.telefone} </Text>
                         </View>
                         <View style={styles.infoPostRow}>
                             <Text style={styles.textInfo}>Valor: R$ 15,00</Text>
                             <Text style={styles.textInfo}>Período: 1 semana</Text>
                         </View>
+                        <View style={styles.infoPostRow}>
+                            <Text style={styles.textInfo}>Endereço: {`${post.logradouro}, ${post.bairro}`}</Text>
+                        </View>
+                        <View style={styles.infoPostRow}>
+                            <Text style={styles.textInfo}>CEP: {`${post.cep}`}</Text>
+                        </View>
+                        <View style={styles.infoPostRow}>
+                            <Text style={styles.textInfo}>Localidade: {`${post.cidade}, ${post.uf}`}</Text>
+                        </View>
                     </View>
                     <LineBottom />
                 </View>
+
                 <View>
                     {verificarIgualdade
-                        ? 
+                        &&
                         <TouchableOpacity onPress={deletarPost} style={styles.delete}>
                             <Text style={styles.textDelete}>Deletar</Text>
                         </TouchableOpacity>
-                        :
-                        <></>
-                    
+                        
                     } 
                     
                 </View>

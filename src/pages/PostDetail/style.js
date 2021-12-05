@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         height: 300
     },
     postInformation:{
-        height: 200,
+        //height: 200,
         paddingLeft:10,
         paddingRight: 10
     }, 

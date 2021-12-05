@@ -1,9 +1,10 @@
 import React from 'react';
-import {Ionicons} from "@expo/vector-icons";
+import {Ionicons, FontAwesome, SimpleLineIcons, Entypo} from "@expo/vector-icons";
+
 export function IconPost({categoria}){
-    if(categoria == 'doação'){
+    if(categoria == 'doar'){
         return (
-            <Ionicons name='alert' size={30} color="#000" />
+            <SimpleLineIcons name="present" size={30} color="#000" />
         )
     }
     if (categoria == 'venda'){
@@ -11,14 +12,9 @@ export function IconPost({categoria}){
             <Ionicons name='pricetags' size={30} color="#000" />
         )
     }
-    if (categoria == 'doação'){
-        return (
-            <Ionicons name='rose' size={30} color="#000" />
-        )
-    }
     else {
         return (
-            <Ionicons name='bonfire' size={30} color="#000" />
+            <FontAwesome name="handshake-o" size={30} color="#000" />
         )
     }
 }

@@ -58,6 +58,14 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 5
     },
+    textAreaInput:{
+        width: '80%',
+        height: 100,
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        textAlignVertical: 'top',
+        padding: 10
+    },
     label:{
         fontSize: 20,
         color: '#fff'
