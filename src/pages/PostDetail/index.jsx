@@ -68,43 +68,36 @@ export function PostDetail({route}){
                     <Image style={styles.imagePost} source={{uri: image?.url}} />
                 </View>
                 <View style={styles.postInformation}>
-                    {post.categoria == 'venda' ? 
+                    <View>
+                        <Text style={styles.title}>Título: {post?.titulo}</Text>
+                    </View>
+                    {post.categoria == 'venda' &&
                         <View style={styles.venda}>
-                            <Text style={styles.title}>R$ {post.valor}</Text>
+                            <Text style={styles.title}>R$ {post?.valor}</Text>
                             <LineBottom />
-                        </View>
-                        :
-                        <></>
+                        </View>                        
                     }
 
-                    <View>
-                        <Text style={styles.title}>Título: {post.titulo}</Text>
-                    </View>
                     <View style={styles.description}>
                         <Text style={styles.textInfo}>
-                            Descrição: {post.descricao}        
+                            Descrição: {post?.descricao}        
                         </Text>
                     </View>
 
                     <View style={styles.infoPost}>
                         <View style={styles.infoPostRow}>
-                            <Text style={styles.textInfo} >Por: {userPost.nome} </Text>
-                            {/* {verificarIgualdade ? 
-                                <Text style={styles.textInfo} >Por: {user.nome} </Text>
-                                :
-                                async () => {
-                                    const {data} = await api.get(`usuario/${post.idUsuario}`)
-
-                                    return (
-                                        <Text style={styles.textInfo} >Por: {data.nome} </Text>
-                                    )
-                                }
-                            } */}
-                            <Text style={styles.textInfo} >Telefone: {userPost.telefone} </Text>
+                            <Text style={styles.textInfo}>Categoria: {post?.categoria}</Text>
                         </View>
                         <View style={styles.infoPostRow}>
-                            <Text style={styles.textInfo}>Valor: R$ 15,00</Text>
-                            <Text style={styles.textInfo}>Período: 1 semana</Text>
+                            <Text style={styles.textInfo} >Por: {userPost?.nome} </Text>
+                            <Text style={styles.textInfo} >Telefone: {userPost?.telefone} </Text>
+                        </View>
+                        <View style={styles.infoPostRow}>
+                            {post.categoria === 'emprestimo' &&  <Text style={styles.textInfo}>Período: 1 semana</Text>}                  
+                        </View>
+                        <LineBottom />
+                        <View style={styles.infoPostRow}>
+                            <Text style={styles.title}>Localização</Text>
                         </View>
                         <View style={styles.infoPostRow}>
                             <Text style={styles.textInfo}>Endereço: {`${post.logradouro}, ${post.bairro}`}</Text>
@@ -115,8 +108,8 @@ export function PostDetail({route}){
                         <View style={styles.infoPostRow}>
                             <Text style={styles.textInfo}>Localidade: {`${post.cidade}, ${post.uf}`}</Text>
                         </View>
-                    </View>
-                    <LineBottom />
+                        </View>
+                        <LineBottom />
                 </View>
 
                 <View>
@@ -124,8 +117,7 @@ export function PostDetail({route}){
                         &&
                         <TouchableOpacity onPress={deletarPost} style={styles.delete}>
                             <Text style={styles.textDelete}>Deletar</Text>
-                        </TouchableOpacity>
-                        
+                        </TouchableOpacity>                        
                     } 
                     
                 </View>

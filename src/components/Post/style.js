@@ -4,7 +4,7 @@ import {theme} from '../../global/styles/theme';
 export const styles = StyleSheet.create({
     post: {
         //height: 440,
-        //backgroundColor: 'pink',
+        // backgroundColor: 'pink',
         // backgroundColor: theme.colors.secondary90,
         marginBottom: 10,
         //borderRadius: 10,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         paddingRight: 20,
         
 
-        //backgroundColor: 'gray',
+        // backgroundColor: 'gray',
         // marginLeft: 10,
         // marginRight: 10,     
         //width: '100%'
@@ -37,22 +37,22 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     bookImageContainer: {
-        //width: '100%',
+        // width: '100%',
         flex: 1,
         //marginLeft: '8%',
         alignItems: 'center',
-        //backgroundColor: 'yellow'
         
     },
     imagePost:{
-        // width: '100%',
+        width: '100%',
         // height: '100%',
         height: 300, 
-        width: 300,
-        //borderRadius: 10,
+        // width: 300,
+        borderRadius: 2,
     },
     bookName:{
         //marginLeft: '8%',
+        alignSelf: 'flex-start',
         fontSize: 15,
         paddingLeft: 10,
         //fontWeight: 'bold'

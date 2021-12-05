@@ -7,7 +7,11 @@ export const styles = StyleSheet.create({
     },
     imagePost:{
         width: '100%',
-        height: 300
+        height: 300,
+        marginBottom: 10
+    },
+    description:{
+        marginBottom: 5
     },
     postInformation:{
         //height: 200,
@@ -15,7 +19,8 @@ export const styles = StyleSheet.create({
         paddingRight: 10
     }, 
     title:{
-        fontSize: 23
+        fontSize: 23,
+        marginBottom: 10
     },
     infoPost:{
         flex: 1,
@@ -24,7 +29,8 @@ export const styles = StyleSheet.create({
     infoPostRow:{
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",        
+        justifyContent: "space-between",      
+        marginBottom: 5  
     },
     textInfo:{
         fontSize: 15

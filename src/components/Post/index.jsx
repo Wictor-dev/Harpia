@@ -82,7 +82,7 @@ export default function Post(props){
                     </TouchableOpacity>
                 </View>
                 <View >
-                    <View style={{borderTopWidth:1, flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop : 10,paddingBottom:4}}></View>
+                    {/* <View style={{borderTopWidth:1, flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop : 10,paddingBottom:4}}></View> */}
                     <View style={styles.bottomPost}>
                         <View style={{flex:1, flexDirection: 'row', justifyContent:'space-between', paddingLeft: 10, paddingRight: 10}}>
                             <View style={{flexDirection: 'column', justifyContent: 'center'}}>
