@@ -27,7 +27,8 @@ export function DrawerNavigationCustom(props) {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.profile}>
-                <Avatar width={80} height={80} uri="https://www.github.com/Wictor-dev.png"/>
+                {/* <Avatar width={80} height={80} uri="https://www.github.com/Wictor-dev.png"/> */}
+                <Avatar width={80} height={80} uri={user.imgPerfilUrl}/>
                 <Ranking style={styles.ranking} />
                 <TouchableOpacity onPress={handleScreenPerfil} style={styles.buttonVerPerfil} ><Text >Ver perfil</Text></TouchableOpacity>
             </View>
