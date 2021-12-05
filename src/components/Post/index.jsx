@@ -86,7 +86,7 @@ export default function Post(props){
                     <View style={styles.bottomPost}>
                         <View style={{flex:1, flexDirection: 'row', justifyContent:'space-between', paddingLeft: 10, paddingRight: 10}}>
                             <View style={{flexDirection: 'column', justifyContent: 'center'}}>
-                            <Text style={{paddingRight: 10}}>Poty Velho - Teresina</Text>
+                            <Text style={{paddingRight: 10}}>{`${props.logradouro}, ${props.bairro}`}</Text>
                             </View>
                             
                             {/* <FontAwesome5 name='heart' size={30} color="#000" style={styles.heartIcon} /> */}

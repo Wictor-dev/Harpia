@@ -62,7 +62,7 @@ export function Home(){
                         renderItem={({item})=>{
                             return (
                                 <>
-                                    <Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id} />
+                                    <Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id} logradouro = {item?.logradouro} bairro = {item?.bairro}   />
                                     <LineBottom />
                                 </>
                                 )}}
