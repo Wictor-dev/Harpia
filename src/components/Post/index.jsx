@@ -15,6 +15,8 @@ export default function Post(props){
     const [userPost, setUserPost] = useState({});
     const [image, setImage] = useState({});
     const [like, setLike] = useState(false);
+
+    const imgPerfilDefault = 'https://w7.pngwing.com/pngs/527/663/png-transparent-logo-person-user-person-icon-rectangle-photography-computer-wallpaper.png';
     useEffect(()=>{
         const fetchUser = async () => {
             try {
@@ -61,7 +63,7 @@ export default function Post(props){
                 <View>
                     <View style={styles.userPost}>
                         <TouchableOpacity style={styles.user} onPress={handlePerfil}>
-                            <View style={styles.perfil}><Avatar  uri="https://www.github.com/Wictor-dev.png" width={55} height={55}/></View>
+                            <View style={styles.perfil}><Avatar  uri={userPost.imgPerfilUrl ?? imgPerfilDefault} width={55} height={55}/></View>
                             <View style={{flex:1,flexDirection: 'row',alignItems:'center', paddingLeft: 10}}>    
                                 <Text style={styles.name}>{userPost?.nome}</Text>
                             </View>

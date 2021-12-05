@@ -81,7 +81,7 @@ export function SignUp(){
         <View>
             <ImageBackground source={require('../../assets/backgroundSignUp.png')} style={{width: '100%', height: '100%'}}>
                 {/* <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 15}} > */}
-                    <View style={styles.signInContainer}>
+                    <View style={[styles.signInContainer, {marginTop: 0}]}>
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>Cadastro</Text>
                         </View>

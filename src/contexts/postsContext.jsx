@@ -18,7 +18,7 @@ export const PostProvider = ({children}) => {
             }
         }
         fetchApi();
-    }, [posts])
+    }, [])
 
     return (
         <PostContext.Provider value={{posts}}>
