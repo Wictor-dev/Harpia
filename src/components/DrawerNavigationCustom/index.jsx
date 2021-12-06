@@ -18,6 +18,8 @@ export function DrawerNavigationCustom(props) {
 
     const { signOut, user } = useAuth();
     const navigation =  useNavigation();
+
+    const imgPerfilDefault = 'https://w7.pngwing.com/pngs/527/663/png-transparent-logo-person-user-person-icon-rectangle-photography-computer-wallpaper.png';
     function handleSignOut(){
         signOut();
     }
@@ -28,7 +30,7 @@ export function DrawerNavigationCustom(props) {
         <SafeAreaView style={styles.container}>
             <View style={styles.profile}>
                 {/* <Avatar width={80} height={80} uri="https://www.github.com/Wictor-dev.png"/> */}
-                <Avatar width={80} height={80} uri={user.imgPerfilUrl}/>
+                <Avatar width={80} height={80} uri={user.imgPerfilUrl ?? imgPerfilDefault}/>
                 <Ranking style={styles.ranking} />
                 <TouchableOpacity onPress={handleScreenPerfil} style={styles.buttonVerPerfil} ><Text >Ver perfil</Text></TouchableOpacity>
             </View>
