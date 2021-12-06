@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, View, Image, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TouchableHighlight, ImageBackground } from 'react-native';
 
 import {styles} from './styles';
 import BookImg from '../../assets/BookLogin.png';
 import { useNavigation } from '@react-navigation/core';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { ScrollView } from 'react-native';
+import { Background } from '../../components/Background';
 
 export function InitialScreen(){
     const navigation = useNavigation();
@@ -19,6 +20,7 @@ export function InitialScreen(){
     }
 
     return (
+        <Background>
         <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 10}} >
         <View >
             <Image source={BookImg} style={styles.img} resizeMode='stretch' />
@@ -35,7 +37,7 @@ export function InitialScreen(){
                             <Text style={[styles.textLogin, {color: '#ADE8F4'}]}> Criar conta </Text>
                 </TouchableHighlight>
                 
-                <View style={styles.alternativeButtonsSubmit}>
+                {/* <View style={styles.alternativeButtonsSubmit}>
                     <Text style={styles.alternativeSubtitle}>Ou entre com</Text>
                     <View style={styles.buttonsAlternative}>
                         <TouchableHighlight style={styles.alternativeLogin} underlayColor={'#85b3bd'} >
@@ -50,9 +52,10 @@ export function InitialScreen(){
                         </TouchableHighlight>
 
                     </View>
-                </View>
+                </View> */}
             </View>
         </View>
         </ScrollView>
+        </Background>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Button, Text, TextInput, ImageBackground, TouchableHighlight} from 'react-native';
+import {View, Button, Text, TextInput, ImageBackground, TouchableHighlight, Alert} from 'react-native';
 
 import {styles} from './styles';
 
@@ -14,11 +14,18 @@ export function SignIn(){
     const [senha, setSenha] = useState('');
     const { signIn } = useAuth();
     function handleSignIn(){
-        if (email !== '' && senha !== ''){
-            signIn(email, senha);
-        } else {
-            console.log('Campos faltando')
-        }
+        signIn(email, senha);
+    }
+
+    const spanAlert = () => {
+        Alert.alert('Dados faltando','Preencha todos os dados', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+            },
+            {text: 'OK', onPress: () => console.log('Ok Pressed')},
+        ]);
     }
 
     return(
@@ -45,9 +52,17 @@ export function SignIn(){
                         />
                 </View>
                 {/* <Button title={'Sign In'} onPress={handleSignIn} /> */}
-                <TouchableHighlight underlayColor={'#ccc'} onPress={handleSignIn} style={styles.buttonSubmit}>
-                    <Text style={styles.text}>Entrar</Text>
-                </TouchableHighlight>
+                {email !== '' && senha !== '' ? 
+                   ( <TouchableHighlight underlayColor={'#ccc'} onPress={handleSignIn} style={styles.buttonSubmit}>
+                        <Text style={styles.text}>Entrar</Text>
+                    </TouchableHighlight>)
+                    :
+                    (
+                    <TouchableHighlight underlayColor={'#ccc'} onPress={spanAlert} style={styles.buttonSubmit}>
+                        <Text style={styles.text}>Entrar</Text>
+                    </TouchableHighlight>  
+                    )
+                }
             </View>
         </ImageBackground>
     )

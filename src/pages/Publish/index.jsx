@@ -17,8 +17,6 @@ import { api } from "../../services/api";
 
 import axios from 'axios';
 
-
-
 export function Publish(){
     const { user } = useAuth()
     const {valor, handleValor} = useExtraField()
@@ -44,6 +42,17 @@ export function Publish(){
 
     const navigation = useNavigation();
     
+    const spanAlert = () => {
+        Alert.alert('Inválido','Preencha todos os dados', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+            },
+            {text: 'OK', onPress: () => console.log('Ok Pressed')},
+        ]);
+    }
+
     const submit = async () => {
         if (title && selectedCategory && description && image){
             const filename = image.split('/').pop();
@@ -173,7 +182,7 @@ export function Publish(){
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [3, 4],
             quality: 1,
         });
         
@@ -226,6 +235,7 @@ export function Publish(){
                             <Picker.Item label="Emprestar" value="emprestimo" />
                     </Picker>
                 </View>
+                <Fields categoria={selectedCategory} />
                 <View style={styles.formContainer}>
                     <Text style={styles.label}>CEP</Text>
                         <TextInput 
@@ -243,7 +253,6 @@ export function Publish(){
                     <Text style={{fontSize:15, color: color}}>{enderecoLabel}</Text>
                 </View>
                 
-                <Fields categoria={selectedCategory} />
                 <View style={styles.image}>
                     {image ? <Image source={{ uri: image }} style={{ width: 313, height: 198, borderRadius: 5 }} /> : 
                     <TouchableOpacity onPress={pickImage}>
@@ -251,10 +260,20 @@ export function Publish(){
                     </TouchableOpacity>}
                     {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
                 </View>
-
-                <TouchableOpacity onPress={submit} style={styles.submit}>
+                {
+                title !== '' &&
+                description !== '' &&
+                image !== null &&
+                cep !== '' ? 
+                (<TouchableOpacity onPress={submit} style={styles.submit}>
                     <Text style={styles.textSubmit}>Continuar</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>)
+                :
+                (<TouchableOpacity onPress={spanAlert} style={styles.submit}>
+                    <Text style={styles.textSubmit}>Continuar</Text>
+                </TouchableOpacity>)
+                }
+                
 
             </ScrollView>
         </Background>

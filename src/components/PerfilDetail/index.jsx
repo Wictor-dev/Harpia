@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, ScrollView, Image, FlatList} from 'react-native';
 
 import { styles } from './style';
-import { Ranking } from '../../components/Ranking';
-import Post from '../../components/Post';
+import { Ranking } from '../Ranking';
+import Post from '../Post';
 import { useAuth } from '../../contexts/auth';
 import { usePost } from '../../contexts/postsContext';
 import { useNavigation } from '@react-navigation/core';
-
+import { LineBottom } from '../LineBottom'
 import { api } from '../../services/api';
 
 
@@ -60,21 +60,17 @@ export function PerfilDetail({route}){
                 <Text>Trocas</Text>
                 <Text>Vendas</Text>
             </View>
-            <View style={styles.dividerContainer}>
-                <View style={styles.divider} />
-            </View>
-            <View style={styles.infoUserOther}>
+            {/* <View style={styles.infoUserOther}>
                 <Text>Moradia</Text>
                 <Text>{user.bairro} - {user.cidade}/PI</Text>
-            </View>
-            <View style={styles.dividerContainer}>
-                <View style={styles.divider} />
-            </View>
+            </View> */}
+            <LineBottom />
             
             <View style={styles.infoUserOther}>
                 <Text>Genero Literário</Text>
                 <Text>Ação / Terror</Text>
             </View>
+            <LineBottom />
         </View>
         
        

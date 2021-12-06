@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useState, useContext} from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Alert } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
@@ -14,6 +14,18 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const passAlert = () => {
+        Alert.alert('Usuário ou senha incorreta','tente novamente', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+            },
+            {text: 'OK', onPress: () => console.log('Ok Pressed')},
+        ]);
+    }
+
 
     useEffect(()=>{
         async function loadStoragedData(){
@@ -46,7 +58,7 @@ export const AuthProvider = ({children}) => {
         getUsuarios();
         try {
             const userEncounter = users.find(user => user?.email === emailProp && user?.senha === senhaProp);
-    
+            
             const {data} = await api.get(`/usuario/${userEncounter._id}`);
             
             setUser(data);
@@ -56,7 +68,7 @@ export const AuthProvider = ({children}) => {
             await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(data));
             await AsyncStorage.setItem('@RNAuth:token', JSON.stringify(data._id));
         } catch (e){
-            console.log(e)
+            passAlert()
         }
     }
 
