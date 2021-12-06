@@ -33,7 +33,7 @@ export function Perfil({route}){
             keyExtractor={post => post?._id}
             renderItem={({item})=>{
                 return (
-                    (item?.idUsuario == user._id) ? (<Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id} />) : (<></>)
+                    (item?.idUsuario == user._id) ? (<Post userId={item?.idUsuario} categoria={item?.categoria} titulo={item?.titulo} descricao={item?.descricao} postId = {item?._id} logradouro = {item?.logradouro} bairro = {item?.bairro} />) : (<></>)
             )}}
         />
 
