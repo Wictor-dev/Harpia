@@ -13,7 +13,7 @@ import { useCategory } from '../../contexts/categoryFilter';
 import { Background } from '../../components/Background';
 import { LineBottom } from '../../components/LineBottom';
 
-
+import { useIsFocused } from "@react-navigation/core";
 
 import { api } from '../../services/api';
 
@@ -26,6 +26,8 @@ export function Home(){
     const [posts, setPosts] = useState([]);
     const postsFiltered = posts.filter(post => post?.categoria === categoryFilter);
     const [loading, setLoading] = useState(false) 
+
+    const isFocused = useIsFocused();
 
     const getPosts = async () =>{
         setLoading(true)
@@ -42,7 +44,7 @@ export function Home(){
 
     useEffect(() =>{ 
         getPosts();
-    },[])
+    },[isFocused])
     return (
         <View style={styles.homeContainer} >
             <View style={styles.filterContainer}>
